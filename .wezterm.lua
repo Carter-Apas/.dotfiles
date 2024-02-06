@@ -69,5 +69,7 @@ config.window_padding = {
   bottom = 0,
 }
 
+config.window_background_opacity = .8
+
 -- and finally, return the configuration to wezterm
 return config
