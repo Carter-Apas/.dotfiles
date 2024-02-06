@@ -69,6 +69,25 @@ config.window_padding = {
   bottom = 0,
 }
 
+config.keys = {
+  {
+    key = 'w',
+    mods = 'CTRL',
+    action = wezterm.action.CloseCurrentPane { confirm = true },
+  },
+  {
+    key = 'c',
+    mods = 'CTRL',
+    action = wezterm.action.CopyTo 'ClipboardAndPrimarySelection',
+  },
+  {
+    key = 't',
+    mods = 'CTRL',
+    action = wezterm.action.SpawnTab 'CurrentPaneDomain',
+  },
+}
+
+
 config.window_background_opacity = .8
 
 -- and finally, return the configuration to wezterm
