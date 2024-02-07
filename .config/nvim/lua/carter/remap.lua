@@ -92,35 +92,35 @@ local function formatFile()
   print(vim.bo.filetype)
   if (fileType == "typescript" or fileType == "typescriptreact") then
     vim.cmd("w")
-    vim.cmd("!noglob prettier --write %")
-    vim.cmd("!noglob npx eslint --fix %")
+    vim.cmd("!prettier --write %")
+    vim.cmd("!npx eslint --fix %")
   end
   if (fileType == "javascript" or fileType == "html" or fileType == "css" or
     fileType == "scss") then
     vim.cmd("w")
-    vim.cmd("!noglob prettier --write %")
+    vim.cmd("!prettier --write %")
   end
   if (fileType == "json" or fileType == "jsonc") then
     vim.cmd("w")
-    vim.cmd("!noglob fixjson --write %")
+    vim.cmd("!fixjson --write %")
   end
   if (fileType == "python") then
     vim.cmd("w")
-    vim.cmd("!noglob black %")
-    vim.cmd("!noglob isort %")
-    vim.cmd("!noglob mypy %")
+    vim.cmd("!black %")
+    vim.cmd("!isort %")
+    vim.cmd("!mypy %")
   end
   if (fileType == "terraform") then
     vim.cmd("w")
-    vim.cmd("!noglob terraform fmt %")
+    vim.cmd("!terraform fmt %")
   end
   if (fileType == "lua") then
     vim.cmd("w")
-    vim.cmd("!noglob lua-format -i % -c ~/.config/nvim/lua/carter/luaformat.yml")
+    vim.cmd("!lua-format -i % -c ~/.config/nvim/lua/carter/luaformat.yml")
   end
   if (fileType == "yaml") then
     vim.cmd("w")
-    vim.cmd("!noglob yamlfmt %")
+    vim.cmd("!yamlfmt %")
   end
 end
 
