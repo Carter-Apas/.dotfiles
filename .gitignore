@@ -1,2 +1,15 @@
 .config/nitrogen
 .config/neofetch
+.config/pavucontrol.ini
+.config/pulse
+.config/systemd
+.config/vlc
+.config/1Password/
+.config/BraveSoftware/
+.config/chromium/
+.config/google-chrome-beta/
+.config/google-chrome-unstable/
+.config/google-chrome/
+.config/microsoft-edge-dev/
+.config/vivaldi-snapshot/
+.config/vivaldi/
