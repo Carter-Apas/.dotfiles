@@ -76,11 +76,6 @@ config.keys = {
     action = wezterm.action.CloseCurrentPane { confirm = true },
   },
   {
-    key = 'c',
-    mods = 'CTRL',
-    action = wezterm.action.CopyTo 'ClipboardAndPrimarySelection',
-  },
-  {
     key = 't',
     mods = 'CTRL',
     action = wezterm.action.SpawnTab 'CurrentPaneDomain',
