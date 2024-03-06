@@ -13,3 +13,6 @@
 .config/microsoft-edge-dev/
 .config/vivaldi-snapshot/
 .config/vivaldi/
+.config/dconf/
+.config/audacity/
+.config/gtk-2.0/
