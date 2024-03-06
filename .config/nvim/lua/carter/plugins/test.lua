@@ -1,4 +1,3 @@
-print("hey")
 return {
   {
     "nvim-telescope/telescope.nvim",
@@ -44,27 +43,18 @@ return {
     },
     lazy = false
   },
-  {"lukas-reineke/indent-blankline.nvim",
+  {
+    "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
-    event = { "BufReadPost", "BufNewFile" },
-    opts = {
-      enabled=true,
-      indent = {
-        highlight = {
-          "grey"
-        },
-        char = {"│"}
-      }
-    },
-    config =
-    function(_, opts)
-	print("yo")
-        local hooks = require "ibl.hooks"
-        hooks.register(
-          hooks.type.HIGHLIGHT_SETUP,
-          function() vim.api.nvim_set_hl(0, "grey", {fg = "#d3d3d3"}) end
-        )
-        require("ibl").setup(opts)
-    end,
-  },
+    event = {"BufReadPost", "BufNewFile"},
+    opts = {enabled = true, indent = {highlight = {"grey"}, char = {"│"}}},
+    config = function(_, opts)
+      local hooks = require "ibl.hooks"
+      hooks.register(
+        hooks.type.HIGHLIGHT_SETUP,
+        function() vim.api.nvim_set_hl(0, "grey", {fg = "#d3d3d3"}) end
+      )
+      require("ibl").setup(opts)
+    end
+  }
 }
