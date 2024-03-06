@@ -1,6 +1,6 @@
 return {
     "jackMort/ChatGPT.nvim",
-    cmd="GPTstart",
+    keys="<leader>gc",
     lazy="true",
     config = function()
       vim.keymap.set("n", "<leader>gc", vim.cmd.ChatGPT)
