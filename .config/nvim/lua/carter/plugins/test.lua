@@ -26,7 +26,6 @@ return {
   {"Shatur/neovim-ayu"},
   {"tpope/vim-fugitive"},
   {"tpope/vim-surround"},
-  {"airblade/vim-gitgutter"},
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
