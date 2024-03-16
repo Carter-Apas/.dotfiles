@@ -8,17 +8,5 @@ if status is-interactive
   export NVCC_PREPEND_FLAGS='-ccbin /opt/cuda/bin'
 end
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-if test -f /home/carter/miniconda3/bin/conda
-    eval /home/carter/miniconda3/bin/conda "shell.fish" "hook" $argv | source
-else
-    if test -f "/home/carter/miniconda3/etc/fish/conf.d/conda.fish"
-        . "/home/carter/miniconda3/etc/fish/conf.d/conda.fish"
-    else
-        set -x PATH "/home/carter/miniconda3/bin" $PATH
-    end
-end
-
-# <<< conda initialize <<<
+pyenv init - | source
 
