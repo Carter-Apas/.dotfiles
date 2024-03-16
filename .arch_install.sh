@@ -1,9 +1,10 @@
 #Install drivers yourself, sync git and git stow dotfiles
 # sudo pacman -S nvidia 
 # sudo pacman -S cuda
+# sudo install iwd
 
 # Setup terminal
-sudo pacman -S wezterm unzip
+sudo pacman -S wezterm unzip fzf
 
 # setup nvim
 sudo pacman -S ripgrep
