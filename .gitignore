@@ -16,3 +16,5 @@
 .config/dconf/
 .config/audacity/
 .config/gtk-2.0/
+.config/Slack/
+.config/pypoetry/
