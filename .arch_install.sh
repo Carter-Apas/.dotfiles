@@ -21,5 +21,11 @@ nitrogen ~/backgrounds/
 sudo pacman -S picom
 picom -b
 
-#audio
+# audio
 sudo pacman -S vlc
+
+# apps
+sudo pacman -S firefox
+
+# default
+xdg-settings set default-web-browser google-chrome.desktop

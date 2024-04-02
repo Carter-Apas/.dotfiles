@@ -106,7 +106,7 @@ local function formatFile()
   end
   if (fileType == "python") then
     vim.cmd("w")
-    vim.cmd("!black %")
+    vim.cmd("!black --line-length 79 --preview  %")
     vim.cmd("!isort %")
     vim.cmd("!mypy %")
   end

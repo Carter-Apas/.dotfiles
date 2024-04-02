@@ -49,10 +49,10 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 xrandr --output DP-0 --mode 2560x1440 --rate 144.0
-xinput set-prop 9 "libinput Accel Profile Enabled" 1 0 0
-xset r rate 250 30 
 picom -b
 nitrogen --restore
+xinput set-prop 9 "libinput Accel Profile Enabled" 1 0 0
+xset r rate 250 30 
 
 exec dwm
 # xset r rate [delay] [rate] f.e. 'xset r rate 200 25

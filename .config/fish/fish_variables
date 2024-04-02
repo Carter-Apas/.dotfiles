@@ -35,3 +35,4 @@ SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
 SETUVAR fish_user_paths:/opt/cuda/bin\x1e/opt/cuda/nsight_systems/\x1e/opt/cuda/nsight_compute\x1e/opt/homebrew/bin\x1e/Users/carter/\x2ebun/bin\x1e/Users/carter/\x2elocal/share/nvm/v18\x2e19\x2e0/bin
 SETUVAR nvm_default_version:18\x2e19\x2e0
+SETUVAR BROWSER:firefox
