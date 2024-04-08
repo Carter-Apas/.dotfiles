@@ -38,6 +38,26 @@ local default_setup = function(server)
 end
 
 require("mason").setup({})
-require("mason-lspconfig").setup(
-  {ensure_installed = {}, handlers = {default_setup}}
-)
+
+local registry = require('mason-registry')
+
+  -- These are package names sourced from the Mason registry,
+  -- and may not necessarily match the server names used in lspconfig
+  local ensure_installed = { "prettier", "fixjson", "html-lsp", "eslint-lsp", "css-lsp", "luaformatter", "pyright", "typescript-language-server", "yamlfmt", "dockerfile-language-server" }
+
+registry.refresh(function()
+  for _, name in pairs(ensure_installed) do
+    local package = registry.get_package(name)
+    if not registry.is_installed(name) then
+      package:install()
+    else
+      package:check_new_version(function(success, result_or_err)
+        if success then
+          package:install({ version = result_or_err.latest_version })
+        end
+      end)
+    end
+  end
+end)
+
+require("mason-lspconfig").setup({})
