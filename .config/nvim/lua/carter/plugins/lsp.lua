@@ -1,6 +1,9 @@
 return {
+  {"towolf/vim-helm"},
+  {"b0o/schemastore.nvim"},
   {
     "williamboman/mason.nvim",
+    depencencies = {"towolf/vim-helm"},
     config = function()
       require("mason").setup()
       local registry = require("mason-registry")
@@ -15,7 +18,10 @@ return {
         "typescript-language-server",
         "yamlfmt",
         "dockerfile-language-server",
-        "lua-language-server"
+        "lua-language-server",
+        "yaml-language-server",
+        "helm-ls",
+        "json-lsp"
       }
 
       registry.refresh(
@@ -68,6 +74,28 @@ return {
             capabilities = capabilities,
             settings = {Lua = {diagnostics = {globals = {"vim"}}}}
           }
+        end,
+        ["jsonls"] = function()
+          require("lspconfig")["jsonls"].setup {
+            capabilities = capabilities,
+            settings = {
+              json = {
+                schemas = require("schemastore").json.schemas(),
+                validate = {enable = true}
+              }
+            }
+          }
+        end,
+        ["yamlls"] = function()
+          require("lspconfig")["yamlls"].setup {
+            capabilities = capabilities,
+            settings = {
+              yaml = {
+                schemaStore = {enable = false, url = ""},
+                schemas = require("schemastore").yaml.schemas()
+              }
+            }
+          }
         end
       }
     end
@@ -81,7 +109,7 @@ return {
       vim.api.nvim_create_autocmd(
         "LspAttach", {
           desc = "LSP actions",
-          callback = function(event)
+          callback = function(event, buf)
             local opts = {buffer = event.buf}
 
             vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
@@ -122,6 +150,46 @@ return {
             vim.keymap.set(
               "n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", opts
             )
+            function tprint(tbl, indent)
+              if not indent then indent = 0 end
+              local toprint = string.rep(" ", indent) .. "{\r\n"
+              indent = indent + 2
+              for k, v in pairs(tbl) do
+                toprint = toprint .. string.rep(" ", indent)
+                if (type(k) == "number") then
+                  toprint = toprint .. "[" .. k .. "] = "
+                elseif (type(k) == "string") then
+                  toprint = toprint .. k .. "= "
+                end
+                if (type(v) == "number") then
+                  toprint = toprint .. v .. ",\r\n"
+                elseif (type(v) == "string") then
+                  toprint = toprint .. "\"" .. v .. "\",\r\n"
+                elseif (type(v) == "table") then
+                  toprint = toprint .. tprint(v, indent + 2) .. ",\r\n"
+                else
+                  toprint = toprint .. "\"" .. tostring(v) .. "\",\r\n"
+                end
+              end
+              toprint = toprint .. string.rep(" ", indent - 2) .. "}"
+              return toprint
+            end
+
+            vim.schedule(
+              function()
+                if vim.lsp.get_client_by_id(event.data.client_id).name ==
+                  "yamlls" and vim.bo.filetype == "helm" then
+                  vim.lsp.buf_detach_client(event.buf, event.data.client_id)
+                end
+              end
+            )
+
+            -- print(vim.lsp.get_client_by_id(event.data.client_id).name)
+            -- print(
+            --   vim.lsp.get_client_by_id(event.data.client_id).name == "yamlls",
+            --   vim.bo.filetype == "helm"
+            -- )
+
           end
         }
       )
