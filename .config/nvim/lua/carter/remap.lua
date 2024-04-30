@@ -90,7 +90,7 @@ vim.keymap.set("n", "<leader>tH", ":tabm -1<CR>")
 local function formatFile()
   local fileType = vim.bo.filetype
   print(vim.bo.filetype)
-  if (fileType == "typescript" or fileType == "typescriptreact") then
+  if (fileType == "typescript" or fileType == "typescriptreact" or fileType == "astro") then
     vim.cmd("w")
     vim.cmd("!prettier --write %")
     vim.cmd("!npx eslint --fix %")
