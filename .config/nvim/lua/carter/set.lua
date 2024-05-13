@@ -13,7 +13,7 @@ vim.opt.scrolloff = 8
 vim.cmd.DoMatchParen = true
 
 vim.opt.guicursor =
-  "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,sm:block-blinkwait175-blinkoff150-blinkon175"
+"n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,sm:block-blinkwait175-blinkoff150-blinkon175"
 -- Set copy and and paste to the same register
 vim.opt.clipboard = "unnamedplus"
 
@@ -22,4 +22,3 @@ vim.cmd("command! Date put =strftime('%F')")
 vim.api.nvim_command("augroup FormatBeforeSave")
 vim.api.nvim_command("au!")
 vim.api.nvim_command("augroup END")
-

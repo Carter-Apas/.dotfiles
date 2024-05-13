@@ -18,8 +18,8 @@ vim.keymap.set("v", "p", "P")
 vim.keymap.set("n", "<C-a>", "gg<S-v>G")
 
 -- New lines
-vim.keymap.set("n", "o", "o<esc>", {noremap = true})
-vim.keymap.set("n", "O", "O<esc>", {noremap = true})
+vim.keymap.set("n", "o", "o<esc>", { noremap = true })
+vim.keymap.set("n", "O", "O<esc>", { noremap = true })
 
 -- set quit console to be also just quit for typos
 vim.keymap.set("n", "q:", ":q<CR>")
@@ -85,46 +85,6 @@ vim.keymap.set("n", "<leader>th", ":-tabnext<CR>")
 -- Move Tabs
 vim.keymap.set("n", "<leader>tL", ":tabm +1<CR>")
 vim.keymap.set("n", "<leader>tH", ":tabm -1<CR>")
-
--- File Formatting
-local function formatFile()
-  local fileType = vim.bo.filetype
-  print(vim.bo.filetype)
-  if (fileType == "typescript" or fileType == "typescriptreact" or fileType == "astro") then
-    vim.cmd("w")
-    vim.cmd("!prettier --write %")
-    vim.cmd("!npx eslint --fix %")
-  end
-  if (fileType == "javascript" or fileType == "html" or fileType == "css" or
-    fileType == "scss") then
-    vim.cmd("w")
-    vim.cmd("!prettier --write %")
-  end
-  if (fileType == "json" or fileType == "jsonc") then
-    vim.cmd("w")
-    vim.cmd("!fixjson --write %")
-  end
-  if (fileType == "python") then
-    vim.cmd("w")
-    vim.cmd("!black --line-length 79 --preview  %")
-    vim.cmd("!isort %")
-    vim.cmd("!mypy %")
-  end
-  if (fileType == "terraform") then
-    vim.cmd("w")
-    vim.cmd("!terraform fmt %")
-  end
-  if (fileType == "lua") then
-    vim.cmd("w")
-    vim.cmd("!lua-format -i % -c ~/.config/nvim/lua/carter/luaformat.yml")
-  end
-  if (fileType == "yaml") then
-    vim.cmd("w")
-    vim.cmd("!yamlfmt %")
-  end
-end
-
-vim.keymap.set("n", "<leader>f", formatFile)
 
 local list_snips = function()
   local ft_list = require("luasnip").available()[vim.o.filetype]
