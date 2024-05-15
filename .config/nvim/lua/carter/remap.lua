@@ -94,3 +94,26 @@ local list_snips = function()
 end
 
 vim.api.nvim_create_user_command("SnipList", list_snips, {})
+
+-- Number conversion
+local function getUnderCursor()
+  local _, start_row, _end_col = unpack(vim.fn.getcurpos())
+  local end_row = vim.fn.line "v"
+  local _start_col = vim.fn.col "v"
+  local start_col = math.min(_end_col, _start_col)
+  local end_col = math.max(_end_col, _start_col)
+
+  local lines = vim.api.nvim_buf_get_lines(0, start_row - 1, end_row, false)
+  return string.sub(lines[1], start_col, end_col)
+end
+local function convertToRemUnderCursor()
+  local rem = getUnderCursor() / 16
+  vim.api.nvim_feedkeys("c" .. rem, 'v', "")
+end
+local function convertToPxUnderCursor()
+  local px = getUnderCursor() * 16
+  vim.api.nvim_feedkeys("c" .. px, 'v', "")
+end
+
+vim.keymap.set("v", "<leader>cr", convertToRemUnderCursor, { expr = true })
+vim.keymap.set("v", "<leader>cp", convertToPxUnderCursor, { expr = true })
