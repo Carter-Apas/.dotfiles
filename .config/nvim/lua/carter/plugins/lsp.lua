@@ -8,7 +8,7 @@ return {
       require("mason").setup()
       local registry = require("mason-registry")
 
-      local versions = { ["eslint-lsp"] = "4.8.0" }
+      local versions = { ["eslint-lsp"] = "4.8.0", ["css-lsp"] = "4.8.0" }
 
       local ensure_installed = {
         "prettier",
@@ -70,6 +70,11 @@ return {
                 "BufWritePre", { buffer = bufnr, command = "EslintFixAll" }
               )
             end
+          }
+        end,
+        ["cssls"] = function()
+          require("lspconfig")["cssls"].setup {
+            capabilities = capabilities
           }
         end,
         ["lua_ls"] = function()
