@@ -23,7 +23,8 @@ return {
         "lua-language-server",
         "yaml-language-server",
         "helm-ls",
-        "json-lsp"
+        "json-lsp",
+        "tailwindcss-language-server"
       }
 
       registry.refresh(
@@ -58,10 +59,13 @@ return {
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities.textDocument.completion.completionItem.snippetSupport = true
+      local default_cap = require("cmp_nvim_lsp").default_capabilities()
 
       require("mason-lspconfig").setup_handlers {
         function(server_name) -- default handler (optional)
-          require("lspconfig")[server_name].setup {}
+          require("lspconfig")[server_name].setup {
+            capabilities = default_cap,
+          }
         end,
         ["eslint"] = function()
           require("lspconfig")["eslint"].setup {
@@ -181,7 +185,7 @@ return {
             javascript = { "prettier" },
             typescript = { "prettier" },
             typescriptreact = { "prettier" },
-            astro = { "prettier " },
+            astro = { "prettier" },
             html = { "prettier" },
             css = { "prettier" },
             json = { "fixjson" },
