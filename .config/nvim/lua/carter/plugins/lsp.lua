@@ -24,7 +24,9 @@ return {
         "yaml-language-server",
         "helm-ls",
         "json-lsp",
-        "tailwindcss-language-server"
+        "tailwindcss-language-server",
+        "terraform-ls",
+        "tflint",
       }
 
       registry.refresh(
@@ -189,7 +191,10 @@ return {
             html = { "prettier" },
             css = { "prettier" },
             json = { "fixjson" },
-            jsonc = { "fixjson " }
+            jsonc = { "fixjson " },
+            yml = { "yamlfmt" },
+            yaml = { "yamlfmt" },
+            terraform = { "tflint" }
           }
         }
       )
