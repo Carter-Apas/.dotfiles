@@ -194,7 +194,7 @@ return {
             jsonc = { "fixjson " },
             yml = { "yamlfmt" },
             yaml = { "yamlfmt" },
-            terraform = { "tflint" }
+            terraform = { "terraform_fmt" }
           }
         }
       )

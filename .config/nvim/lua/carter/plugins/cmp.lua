@@ -9,6 +9,12 @@ return {
   },
   { "hrsh7th/cmp-nvim-lsp" },
   {
+    "zbirenbaum/copilot-cmp",
+    config = function()
+      require("copilot_cmp").setup()
+    end
+  },
+  {
     "hrsh7th/nvim-cmp",
     config = function()
       local cmp = require("cmp")
@@ -33,7 +39,7 @@ return {
       end
       cmp.setup(
         {
-          sources = { { name = "nvim_lsp" }, { name = "luasnip" } },
+          sources = { { name = "nvim_lsp" }, { name = "luasnip" }, { name = "copilot" } },
           mapping = cmp.mapping.preset.insert(
             {
               -- Enter key confirms completion item
@@ -76,13 +82,5 @@ return {
         }
       )
     end
-  },
-  { "rafamadriz/friendly-snippets" },
-  { "saadparwaiz1/cmp_luasnip" },
-  {
-    "L3MON4D3/LuaSnip",
-    dependencies = { "rafamadriz/friendly-snippets" },
-    version = "v2.*",
-    build = "make install_jsregexp"
   },
 }
