@@ -192,8 +192,8 @@ return {
             css = { "prettier" },
             json = { "fixjson" },
             jsonc = { "fixjson " },
-            yml = { "yamlfmt" },
-            yaml = { "yamlfmt" },
+            yml = { "yamlfmt --formatter retain_line_breaks=true" },
+            yaml = { "yamlfmt --formatter retain_line_breaks=true" },
             terraform = { "terraform_fmt" }
           }
         }
