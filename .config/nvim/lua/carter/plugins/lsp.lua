@@ -187,6 +187,7 @@ return {
             javascript = { "prettier" },
             typescript = { "prettier" },
             typescriptreact = { "prettier" },
+            javascriptreact = { "prettier" },
             astro = { "prettier" },
             html = { "prettier" },
             css = { "prettier" },
