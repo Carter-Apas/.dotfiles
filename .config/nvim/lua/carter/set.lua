@@ -3,7 +3,7 @@ vim.opt.nu = true
 
 -- required for blankline
 vim.opt.smartindent = true
-vim.opt.tabstop = true
+vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
