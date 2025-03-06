@@ -16,7 +16,8 @@ return {
         "html-lsp",
         "eslint-lsp", -- 4.8.0
         "css-lsp",
-        "pyright",
+        -- "pyright",
+        "basedpyright",
         "typescript-language-server",
         "yamlfmt",
         "dockerfile-language-server",
@@ -27,6 +28,7 @@ return {
         "tailwindcss-language-server",
         "terraform-ls",
         "tflint",
+        "ruff",
       }
 
       registry.refresh(
@@ -76,6 +78,21 @@ return {
                 "BufWritePre", { buffer = bufnr, command = "EslintFixAll" }
               )
             end
+          }
+        end,
+        ["basedpyright"] = function()
+          require("lspconfig")["basedpyright"].setup {
+            capabilities = default_cap,
+            settings = {
+              python = {
+                analysis = {
+                  autoSearchPaths = true,
+                  diagnosticMode = "openFilesOnly",
+                  useLibraryCodeForTypes = true
+                }
+              }
+            },
+            single_file_support = true
           }
         end,
         ["cssls"] = function()
@@ -183,7 +200,7 @@ return {
         {
           format_on_save = { timeout_ms = 500, lsp_fallback = "always" },
           formatters_by_ft = {
-            python = { "isort", "black", "mypy" },
+            python = { "ruff" },
             javascript = { "prettier" },
             typescript = { "prettier" },
             typescriptreact = { "prettier" },

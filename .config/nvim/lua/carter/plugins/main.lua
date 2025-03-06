@@ -10,7 +10,6 @@ return {
     tag = "nightly"
   },
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-  { "Shatur/neovim-ayu" },
   { "tpope/vim-fugitive" },
   { "tpope/vim-surround" },
   {
