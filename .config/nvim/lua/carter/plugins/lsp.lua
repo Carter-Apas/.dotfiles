@@ -16,8 +16,7 @@ return {
         "html-lsp",
         "eslint-lsp", -- 4.8.0
         "css-lsp",
-        -- "pyright",
-        "basedpyright",
+        "pyright",
         "typescript-language-server",
         "yamlfmt",
         "dockerfile-language-server",
@@ -78,21 +77,6 @@ return {
                 "BufWritePre", { buffer = bufnr, command = "EslintFixAll" }
               )
             end
-          }
-        end,
-        ["basedpyright"] = function()
-          require("lspconfig")["basedpyright"].setup {
-            capabilities = default_cap,
-            settings = {
-              python = {
-                analysis = {
-                  autoSearchPaths = true,
-                  diagnosticMode = "openFilesOnly",
-                  useLibraryCodeForTypes = true
-                }
-              }
-            },
-            single_file_support = true
           }
         end,
         ["cssls"] = function()
