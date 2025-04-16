@@ -133,13 +133,13 @@ function nvm --description "Node version manager"
                 end
             end
 
+            echo "here"
             if test $ver != "$nvm_current_version"
                 set --query nvm_current_version && _nvm_version_deactivate $nvm_current_version
                 _nvm_version_activate $ver
 
                 set --query nvm_default_packages[1] && npm install --global $silent $nvm_default_packages
             end
-
             set --query silent || printf "Now using Node %s (npm %s) %s\n" (_nvm_node_info)
         case use
             test $ver = default && set ver $nvm_default_version
@@ -150,7 +150,7 @@ function nvm --description "Node version manager"
                 return 1
             end
 
-            if test $ver != "$nvm_current_version"
+            if test $ver != $nvm_current_version; or test (node -v) != $ver
                 set --query nvm_current_version && _nvm_version_deactivate $nvm_current_version
                 test $ver != system && _nvm_version_activate $ver
             end
