@@ -22,3 +22,5 @@ if test -f .nvmrc
     nvm use
 end
 
+export OPENAI_API_KEY="op://Private/codexApiKey/api-key"
+
