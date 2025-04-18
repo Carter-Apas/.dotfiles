@@ -133,7 +133,6 @@ function nvm --description "Node version manager"
                 end
             end
 
-            echo "here"
             if test $ver != "$nvm_current_version"
                 set --query nvm_current_version && _nvm_version_deactivate $nvm_current_version
                 _nvm_version_activate $ver
@@ -150,7 +149,7 @@ function nvm --description "Node version manager"
                 return 1
             end
 
-            if test $ver != $nvm_current_version; or test (node -v) != $ver
+            if test -n "$ver"; and test "$ver" != "$nvm_current_version"; or test (node -v) != "$ver"
                 set --query nvm_current_version && _nvm_version_deactivate $nvm_current_version
                 test $ver != system && _nvm_version_activate $ver
             end
