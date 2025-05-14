@@ -5,6 +5,11 @@ if [[ $EUID -ne 0 ]]; then
   exit 1
 fi
 
+## For various LSP ##
+# sudo apt install python3 
+# sudo apt install luarocks
+# sudo apt install npm
+
 sudo apt install -y cmake
 sudo apt install -y make
 sudo apt install -y stow
