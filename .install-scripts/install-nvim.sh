@@ -1,7 +1,15 @@
 #!/bin/bash
 
+# Check to see if running as root
 if [[ $EUID -ne 0 ]]; then
   echo "❌ This script must be run as root. Try again with: sudo $0"
+  exit 1
+fi
+
+# Check if current directory is the user's home
+if [[ "$PWD" != "$HOME" ]]; then
+  echo "❌ This script must be run from your home directory: $HOME"
+  echo "   Current directory: $PWD"
   exit 1
 fi
 
@@ -17,7 +25,6 @@ sudo apt install -y unzip
 sudo apt install -y ripgrep
 git clone https://github.com/neovim/neovim.git
 sudo make -C ./neovim install
-https://github.com/Carter-Apas/.dotfiles.git
-cd .dotfiles
-stow .
+cd ~/.dotfiles && stow .
+nvim
 
