@@ -18,6 +18,21 @@ vim.opt.guicursor =
 -- Set copy and and paste to the same register
 vim.opt.clipboard = "unnamedplus"
 
+if os.getenv "SSH_CLIENT" ~= nil or os.getenv "SSH_TTY" ~= nil then
+  local function paste()
+    return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
+  end
+
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*")
+    },
+    paste = { ["+"] = paste, ["*"] = paste }
+  }
+end
+
 -- Add Date
 vim.cmd("command! Date put =strftime('%F')")
 vim.api.nvim_command("augroup FormatBeforeSave")

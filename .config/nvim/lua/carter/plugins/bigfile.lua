@@ -1,6 +1,6 @@
 return {
-    "LunarVim/bigfile.nvim"
-    -- opts = {
-    --   pattern = { "!*.d.ts" }
-    -- }
+  "LunarVim/bigfile.nvim"
+  -- opts = {
+  --   pattern = { "!*.d.ts" }
+  -- }
 }
