@@ -42,7 +42,7 @@ return {
               package:install({ version = version })
               goto continue
             end
-            package:check_new_version(
+            package:get_latest_version(
               function(success, result_or_err)
                 if success then
                   package:install({ version = result_or_err.latest_version })
