@@ -1,16 +1,16 @@
 local function diffgetLeft()
-  print("Pulling left")
-  vim.cmd("diffget //2")
+    print("Pulling left")
+    vim.cmd("diffget //2")
 end
 
 local function diffgetRight()
-  print("Pulling right")
-  vim.cmd("diffget //3")
+    print("Pulling right")
+    vim.cmd("diffget //3")
 end
 
 local function gitPush()
-  print("Pushing...")
-  vim.cmd("Git push")
+    print("Pushing...")
+    vim.cmd("Git push")
 end
 
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git)

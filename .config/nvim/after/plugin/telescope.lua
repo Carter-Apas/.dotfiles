@@ -2,15 +2,12 @@ local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
 
 require("telescope").setup({
-  defaults = {
-    preview = { treesitter = false },
-    mappings = {
-      n = {
-        ["t"] = actions.select_tab,
-        ["v"] = actions.select_vertical,
-      },
-    },
-  },
+    defaults = {
+        preview = {treesitter = false},
+        mappings = {
+            n = {["t"] = actions.select_tab, ["v"] = actions.select_vertical}
+        }
+    }
 })
 
 vim.keymap.set("n", "<leader>sf", builtin.find_files, {})

@@ -108,11 +108,11 @@ local function getUnderCursor()
 end
 local function convertToRemUnderCursor()
   local rem = getUnderCursor() / 16
-  vim.api.nvim_feedkeys("c" .. rem, 'v', "")
+  vim.api.nvim_feedkeys("c" .. rem, "v", "")
 end
 local function convertToPxUnderCursor()
   local px = getUnderCursor() * 16
-  vim.api.nvim_feedkeys("c" .. px, 'v', "")
+  vim.api.nvim_feedkeys("c" .. px, "v", "")
 end
 
 vim.keymap.set("v", "<leader>cr", convertToRemUnderCursor, { expr = true })
