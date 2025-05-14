@@ -182,9 +182,9 @@ return {
     config = function()
       require("conform").setup(
         {
-          format_on_save = { timeout_ms = 500, lsp_fallback = "always" },
+          format_on_save = { timeout_ms = 500, lsp_format = "last" },
           formatters_by_ft = {
-            python = { "ruff" },
+            python = { "ruff_format", "ruff_fix" },
             javascript = { "prettier" },
             typescript = { "prettier" },
             typescriptreact = { "prettier" },
