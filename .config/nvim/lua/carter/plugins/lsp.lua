@@ -27,6 +27,7 @@ return {
         "json-lsp",
         "tailwindcss-language-server",
         "terraform-ls",
+        "terraform",
         "tflint",
         "ruff"
       }
@@ -156,7 +157,7 @@ return {
           jsonc = { "fixjson " },
           yml = { "yamlfmt --formatter retain_line_breaks=true" },
           yaml = { "yamlfmt --formatter retain_line_breaks=true" },
-          terraform = { "terraform_fmt" },
+          terraform = { "terraform fmt" },
           lua = { "lua-format" }
         }
       })
