@@ -10,17 +10,5 @@ end
 
 pyenv init - | source
 
-function cd --wraps=cd --description "cd and auto-nvm use"
-    builtin cd $argv
-    if test -f .nvmrc
-        nvm use
-    end
-end
-
-if test -f .nvmrc
-    echo ".nvmrc found in $(pwd), running nvm use..."
-    nvm use
-end
-
 export OPENAI_API_KEY="op://Private/codexApiKey/api-key"
 

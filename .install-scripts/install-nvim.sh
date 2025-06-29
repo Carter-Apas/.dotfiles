@@ -19,9 +19,11 @@ fi
 # sudo apt install npm
 
 sudo apt install -y cmake
+sudo apt install -y curl # nvm
+sudo apt install -y unzip # nvm
+sudo apt install -y fnm # nvm
 sudo apt install -y make
 sudo apt install -y stow
-sudo apt install -y unzip
 sudo apt install -y ripgrep
 git clone https://github.com/neovim/neovim.git
 sudo make -C ./neovim install
