@@ -14,5 +14,7 @@ return {
       autotag = { enable = true },
       indent = { enable = true }
     })
-  end
+  end,
+  dependencies = { "OXY2DEV/markview.nvim" },
+  lazy = false
 }
