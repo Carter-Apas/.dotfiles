@@ -157,7 +157,7 @@ return {
           jsonc = { "fixjson " },
           yml = { "yamlfmt --formatter retain_line_breaks=true" },
           yaml = { "yamlfmt --formatter retain_line_breaks=true" },
-          terraform = { "terraform fmt" },
+          terraform = { "terraform_fmt" },
           lua = { "lua-format" }
         }
       })
