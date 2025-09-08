@@ -79,6 +79,7 @@ vim.keymap.set("n", "<leader>~", function() makeTerminalVertical() end)
 
 -- Open Tabs
 vim.keymap.set("n", "<leader>tt", ":tabnew<CR>:terminal<CR>i")
+vim.keymap.set("n", "<leader>tT", ":tab split<CR>")
 vim.keymap.set("n", "<leader>tl", ":+tabnext<CR>")
 vim.keymap.set("n", "<leader>th", ":-tabnext<CR>")
 
