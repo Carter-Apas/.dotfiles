@@ -8,7 +8,7 @@ return {
       require("mason").setup()
       local registry = require("mason-registry")
 
-      local versions = { ["eslint-lsp"] = "4.8.0", ["css-lsp"] = "4.8.0" }
+      local versions = {}
 
       local ensure_installed = {
         "prettier",
