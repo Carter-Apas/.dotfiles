@@ -19,6 +19,8 @@ config.color_scheme = "Ayu Light (Gogh)"
 
 config.use_fancy_tab_bar = false
 
+config.enable_wayland = false 
+
 config.colors = {
   tab_bar = {
     active_tab = {
