@@ -8,7 +8,5 @@ if status is-interactive
   export NVCC_PREPEND_FLAGS='-ccbin /opt/cuda/bin'
 end
 
-pyenv init - | source
-
 export OPENAI_API_KEY="op://Private/codexApiKey/api-key"
 

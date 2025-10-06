@@ -19,46 +19,46 @@ config.color_scheme = "Ayu Light (Gogh)"
 
 config.use_fancy_tab_bar = false
 
-config.enable_wayland = false 
+config.enable_wayland = false
 
 config.colors = {
   tab_bar = {
     active_tab = {
-          -- The color of the background area for the tab
-          bg_color = '#F8F9FA',
-          -- The color of the text for the tab
-          fg_color = 'black',
+      -- The color of the background area for the tab
+      bg_color = '#F8F9FA',
+      -- The color of the text for the tab
+      fg_color = 'black',
 
-          -- Specify whether you want "Half", "Normal" or "Bold" intensity for the
-          -- label shown for this tab.
-          -- The default is "Normal"
-          intensity = 'Bold',
+      -- Specify whether you want "Half", "Normal" or "Bold" intensity for the
+      -- label shown for this tab.
+      -- The default is "Normal"
+      intensity = 'Bold',
 
-          -- Specify whether you want "None", "Single" or "Double" underline for
-          -- label shown for this tab.
-          -- The default is "None"
-          underline = 'None',
+      -- Specify whether you want "None", "Single" or "Double" underline for
+      -- label shown for this tab.
+      -- The default is "None"
+      underline = 'None',
 
-          -- Specify whether you want the text to be italic (true) or not (false)
-          -- for this tab.  The default is false.
-          italic = false,
+      -- Specify whether you want the text to be italic (true) or not (false)
+      -- for this tab.  The default is false.
+      italic = false,
 
-          -- Specify whether you want the text to be rendered with strikethrough (true)
-          -- or not for this tab.  The default is false.
-          strikethrough = false,
-        },
+      -- Specify whether you want the text to be rendered with strikethrough (true)
+      -- or not for this tab.  The default is false.
+      strikethrough = false,
+    },
     inactive_tab = {
-          bg_color = '#F8F9FA',
-          fg_color = '#c0c0c0',
+      bg_color = '#F8F9FA',
+      fg_color = '#c0c0c0',
 
 
-          -- The same options that were listed under the `active_tab` section above
-          -- can also be used for `inactive_tab`.
-        },
+      -- The same options that were listed under the `active_tab` section above
+      -- can also be used for `inactive_tab`.
+    },
     background = '#F8F9FA',
     new_tab = {
-        bg_color = '#F8F9FA',
-        fg_color = '#808080',
+      bg_color = '#F8F9FA',
+      fg_color = '#808080',
     }
   },
 }
@@ -82,6 +82,7 @@ config.keys = {
     mods = 'CTRL',
     action = wezterm.action.SpawnTab 'CurrentPaneDomain',
   },
+  { key = 'y', mods = 'CTRL', action = wezterm.action.ActivateCopyMode },
 }
 
 

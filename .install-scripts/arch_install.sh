@@ -1,31 +1,82 @@
-#Install drivers yourself, sync git and git stow dotfiles
-# sudo pacman -S nvidia 
-# sudo pacman -S cuda
-# sudo install iwd
+#!/bin/bash
 
-# Setup terminal
-sudo pacman -S wezterm unzip fzf
+# Define an array of all packages to be installed
+# This list is consolidated from your original script.
+PACKAGES=(
+    # Drivers/System
+    # nvidia
+    # cuda
+    # intel-ucode
+    # networkmanager
 
-# setup nvim
-sudo pacman -S ripgrep
-sudo pacman -S --noconfirm nerd-fonts
-sudo pacman -S xclip
+    # Terminal Tools
+    wezterm
+    unzip
+    fzf
+    curl
+    dnsutils
+    base-devel
+    htop
+    openssh
 
-# setup fish
-sudo pacman -S fish
-chsh -s /bin/fish
+    # Shell
+    fish
+    uv
 
-# setup background
-sudo pacman -S nitrogen
-nitrogen ~/backgrounds/
-sudo pacman -S picom
-picom -b
+    # Window Manager/Compositor
+    hyprland
+    hyprpaper
+    rofi
 
-# audio
-sudo pacman -S vlc
+    # Applications
+    vlc
+    firefox
+)
 
-# apps
-sudo pacman -S firefox
+# --- Installation Steps ---
 
-# default
-xdg-settings set default-web-browser google-chrome.desktop
+echo "Starting package synchronization and installation..."
+# Sync the database once before installation for efficiency
+sudo pacman -Sy
+
+# Use a loop to iterate over the array and install all packages
+# The '--needed' flag skips packages that are already installed.
+echo "Installing ${#PACKAGES[@]} packages..."
+sudo pacman -S --needed "${PACKAGES[@]}"
+
+# --- Post-Installation Setup ---
+
+## 1. Setup fish shell
+echo "Setting default shell to fish..."
+TARGET_USER=${SUDO_USER:-$USER}
+
+# Only proceed if we aren't targeting the 'root' account
+if [ "$TARGET_USER" != "root" ] && command -v fish &> /dev/null; then
+    echo "⚙️ Changing default shell for user '$TARGET_USER' to Fish..."
+    
+    # Run chsh with the -s (shell path) and the specific username
+    chsh -s /usr/bin/fish "$TARGET_USER"
+    
+    if [ $? -eq 0 ]; then
+        echo "✅ Successfully changed shell for $TARGET_USER to /usr/bin/fish."
+        echo "   (User '$TARGET_USER' must log out and back in for the change to take effect.)"
+    else
+        echo "❌ Failed to change shell for $TARGET_USER. Check if fish is installed at /usr/bin/fish."
+    fi
+else
+    if [ "$TARGET_USER" == "root" ]; then
+        echo "⚠️ Skipping shell change: TARGET_USER is 'root'. Not changing root's shell."
+    else
+        echo "⚠️ Skipping shell change: 'fish' command not found. Ensure it was installed."
+    fi
+fi
+
+## 2. Setup fnm
+curl -fsSL https://fnm.vercel.app/install | bash
+
+echo "Installing Node 22"
+fnm install 22
+fnm use 22
+fnm default 22
+
+echo "Installation and setup complete! 🎉"

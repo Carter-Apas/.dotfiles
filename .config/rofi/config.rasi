@@ -1,0 +1,157 @@
+/*******************************************************************************
+ * ROFI Color theme
+ *******************************************************************************/
+
+* {
+    /* Base Colors from Light Ayu */
+    foreground:                       rgba ( 92, 97, 102, 100 % );   /* colors.fg */
+    background:                       rgba ( 248, 249, 250, 100 % ); /* colors.bg */
+    normal-background:                @background;
+    normal-foreground:                @foreground;
+
+    /* Selection Colors */
+    selected-normal-background:       rgba ( 211, 225, 245, 100 % ); /* colors.selection_bg */
+    selected-normal-foreground:       @foreground;
+
+    /* Alternate Row Colors */
+    alternate-normal-background:      @background;
+    alternate-normal-foreground:      @foreground;
+
+    /* Active/Highlight (e.g., function names, file in active window) */
+    active-foreground:                rgba ( 57, 158, 230, 100 % );  /* colors.entity */
+    active-background:                @background;
+    selected-active-background:       @selected-normal-background;
+    selected-active-foreground:       @active-foreground;
+    alternate-active-background:      @background;
+    alternate-active-foreground:      @active-foreground;
+
+    /* Urgent/Error (e.g., errors or warnings) */
+    urgent-foreground:                rgba ( 230, 80, 80, 100 % );   /* colors.error */
+    urgent-background:                @background;
+    selected-urgent-background:       @selected-normal-background;
+    selected-urgent-foreground:       @urgent-foreground;
+    alternate-urgent-background:      @background;
+    alternate-urgent-foreground:      @urgent-foreground;
+
+    /* Separator/Border */
+    separatorcolor:                   rgba ( 231, 234, 237, 100 % ); /* colors.line */
+    bordercolor:                      @separatorcolor;
+    border-color:                     @separatorcolor; /* Keep border-color in sync */
+
+    /* Additional/Unused Variables */
+    red:                              @urgent-foreground;
+    blue:                             @active-foreground;
+    lightbg:                          @background; /* Not directly mapped */
+    lightfg:                          @foreground; /* Not directly mapped */
+    background-color:                 rgba ( 0, 0, 0, 0 % ); /* Transparent or similar */
+    spacing:                          2;
+}
+window {
+    background-color: @background;
+    border:           10;
+    padding:          5;
+}
+mainbox {
+    border:  0;
+    padding: 0;
+}
+message {
+    border:           1px dash 0px 0px ;
+    border-color:     @separatorcolor;
+    padding:          1px ;
+}
+textbox {
+    text-color: @foreground;
+}
+listview {
+    fixed-height: 0;
+    border:           2px dash 0px 0px ;
+    border-color:     @separatorcolor;
+    spacing:          2px ;
+    scrollbar:        true;
+    padding:          2px 0px 0px ;
+}
+element {
+    border:  0;
+    padding: 1px ;
+}
+element-text {
+    background-color: inherit;
+    text-color:       inherit;
+}
+element.normal.normal {
+    background-color: @normal-background;
+    text-color:       @normal-foreground;
+}
+element.normal.urgent {
+    background-color: @urgent-background;
+    text-color:       @urgent-foreground;
+}
+element.normal.active {
+    background-color: @active-background;
+    text-color:       @active-foreground;
+}
+element.selected.normal {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+element.selected.urgent {
+    background-color: @selected-urgent-background;
+    text-color:       @selected-urgent-foreground;
+}
+element.selected.active {
+    background-color: @selected-active-background;
+    text-color:       @selected-active-foreground;
+}
+element.alternate.normal {
+    background-color: @alternate-normal-background;
+    text-color:       @alternate-normal-foreground;
+}
+element.alternate.urgent {
+    background-color: @alternate-urgent-background;
+    text-color:       @alternate-urgent-foreground;
+}
+element.alternate.active {
+    background-color: @alternate-active-background;
+    text-color:       @alternate-active-foreground;
+}
+scrollbar {
+    width:            4px ;
+    border:           0;
+    handle-width:     8px ;
+    padding:          0;
+}
+mode-switcher {
+    border:           2px dash 0px 0px ;
+    border-color:     @separatorcolor;
+}
+button.selected {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+inputbar {
+    spacing:    0;
+    text-color: @normal-foreground;
+    padding:    1px ;
+}
+case-indicator {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+entry {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+prompt {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+inputbar {
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+textbox-prompt-colon {
+    expand:       false;
+    str:          ":";
+    margin:       0px 0.3em 0em 0em ;
+    text-color: @normal-foreground;
+}
