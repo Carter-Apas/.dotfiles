@@ -17,7 +17,12 @@ PACKAGES=(
     dnsutils
     base-devel
     htop
+    git
+
+    # Auth
     openssh
+    less
+    keychain
 
     # Shell
     fish
@@ -30,11 +35,6 @@ PACKAGES=(
     waybar
     hyprlock
     hypridle
-
-    # Coding stuff
-    git
-    less
-
     # Waybar dependencies
     nm-connection-manager
 

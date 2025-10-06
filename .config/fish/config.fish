@@ -7,3 +7,7 @@ if status is-interactive
   # workaround.
   export NVCC_PREPEND_FLAGS='-ccbin /opt/cuda/bin'
 end
+
+if status --is-interactive
+    keychain --eval --quiet -Q github | source
+end
