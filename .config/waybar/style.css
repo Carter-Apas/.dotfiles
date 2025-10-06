@@ -1,0 +1,216 @@
+/* --- Global Styles --- */
+/* background: #f8f9fa */
+/* accent: #f2ae49 */
+/* text: #5C6166 */
+
+/* colors.bg */
+* {
+  font-family:
+    "SF Pro Text", "Inter", "Segoe UI, NotoSans Nerd Font", sans-serif;
+  font-size: 13px;
+  min-height: 0;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+}
+
+#waybar {
+  background: transparent;
+  color: #5c6166;
+  font-weight: 500;
+}
+
+#workspaces {
+  padding: 2px;
+}
+
+/* --- Left Modules (Individual, Fully Rounded Blocks - With Horizontal Spacing & Simple Hover) --- */
+#workspaces,
+#custom-uptime,
+#cpu,
+#memory {
+  background-color: #f8f9fa;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  min-width: 0;
+  border: none;
+  transition:
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+}
+
+#custom-uptime:hover,
+#cpu:hover,
+#memory:hover,
+#clock:hover {
+  background-color: rgb(41, 42, 53);
+}
+
+#workspaces button {
+  border-radius: 5px;
+  padding: 0.3rem 0.7rem;
+  background: transparent;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  outline: none;
+}
+
+#workspaces button.active {
+  color: #f2ae49;
+  background-color: rgba(153, 209, 219, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(153, 209, 219, 0.2);
+}
+
+#workspaces button:hover {
+  background: rgb(41, 42, 53);
+  /* Reference bright hover color */
+}
+
+/* --- Center Module (Individual, Fully Rounded Block - With Simple Hover) --- */
+#clock {
+  background-color: #f8f9fa;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  /* This module is always rounded */
+  box-shadow: 0 1px 3px rgba(153, 209, 219, 0.2);
+  min-width: 0;
+  border: none;
+  transition:
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+}
+
+#custom-pomodoro {
+  background-color: #1a1b26;
+  padding: 0.3rem 0.7rem;
+  margin: 5px 0px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  min-width: 0;
+  border: none;
+  outline: none;
+  transition:
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out,
+    outline 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
+  font-weight: 600;
+}
+
+#custom-pomodoro {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#custom-pomodoro:hover {
+  background-color: rgb(41, 42, 53);
+  outline: 1px solid rgba(255, 255, 255, 0.1);
+  outline-offset: -1px;
+}
+
+#custom-pomodoro.work,
+#custom-pomodoro.break {
+  background-color: rgba(153, 209, 219, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(153, 209, 219, 0.2);
+  outline: none;
+}
+
+/* --- Right Modules (Individual, Fully Rounded Blocks - With Horizontal Spacing & Simple Hover) --- */
+#bluetooth,
+#pulseaudio,
+#backlight,
+#network,
+#custom-lock,
+#battery {
+  background-color: #f8f9fa;
+  padding: 0.3rem 1rem;
+  border-radius: 6px;
+  box-shadow: none;
+  min-width: 0;
+  border: none;
+  transition:
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+}
+
+#bluetooth:hover,
+#pulseaudio:hover,
+#backlight:hover,
+#network:hover,
+#custom-lock:hover,
+#battery:hover {
+  background-color: rgb(41, 42, 53);
+}
+
+#bluetooth {
+  margin-left: 0px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+#battery {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  margin-right: 7px;
+}
+
+#pulseaudio {
+  color: #c6d0f5;
+}
+
+#backlight {
+  color: #c6d0f5;
+}
+
+#network.disconnected {
+  color: #e65050;
+}
+
+#custom-lock {
+  color: #babbf1;
+}
+
+#bluetooth {
+  color: #888888;
+  font-size: 16px;
+}
+
+#bluetooth.on {
+  color: #2196f3;
+}
+
+#bluetooth.connected {
+  color: #99d1db;
+}
+
+#battery {
+  color: #99d1db;
+}
+
+#battery.charging {
+  color: #a6d189;
+}
+
+#battery.warning:not(.charging) {
+  color: #e78284;
+}
+
+/* --- Tooltip Styles --- */
+tooltip {
+  background-color: #f8f9fa;
+  padding: 5px 12px;
+  margin: 5px 0px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-size: 12px;
+}
+
+tooltip label {
+  font-family:
+    "SF Pro Text", "Inter", "Segoe UI, NotoSans Nerd Font", sans-serif;
+  font-size: 13px;
+  padding: 5px 12px;
+  color: #5c6166;
+}

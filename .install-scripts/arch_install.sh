@@ -27,6 +27,14 @@ PACKAGES=(
     hyprland
     hyprpaper
     rofi
+    waybar
+
+    # Coding stuff
+    git
+    less
+
+    # Waybar dependencies
+    nm-connection-manager
 
     # Applications
     vlc

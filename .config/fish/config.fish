@@ -7,6 +7,3 @@ if status is-interactive
   # workaround.
   export NVCC_PREPEND_FLAGS='-ccbin /opt/cuda/bin'
 end
-
-export OPENAI_API_KEY="op://Private/codexApiKey/api-key"
-
