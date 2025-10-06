@@ -38,6 +38,11 @@ PACKAGES=(
     # Waybar dependencies
     nm-connection-manager
 
+    # Sound
+    alsa-utils
+    pipewire
+    pipewire-alsa
+
     # Applications
     vlc
     firefox

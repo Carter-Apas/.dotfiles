@@ -20,7 +20,7 @@
     "custom/pomodoro",
 //    "bluetooth",
     "network",
-//    "pulseaudio", 
+    "wireplumber", 
     "backlight",
     "battery",
   ],
@@ -101,13 +101,13 @@
         "tooltip": false
   },
   
-  "pulseaudio": {
+  "wireplumber": {
     "format": "{icon}  {volume}%",
     "format-muted": "",
     "format-icons": {
       "default": ["", "", " "]
     },
-    "on-click": "pavucontrol"
+    "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle"
   },
 
   "battery": {

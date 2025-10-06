@@ -118,7 +118,7 @@
 
 /* --- Right Modules (Individual, Fully Rounded Blocks - With Horizontal Spacing & Simple Hover) --- */
 #bluetooth,
-#pulseaudio,
+#wireplumber,
 #backlight,
 #network,
 #custom-lock,
@@ -135,7 +135,7 @@
 }
 
 #bluetooth:hover,
-#pulseaudio:hover,
+#wireplumber:hover,
 #backlight:hover,
 #network:hover,
 #custom-lock:hover,
@@ -153,10 +153,6 @@
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
   margin-right: 7px;
-}
-
-#pulseaudio {
-  color: #c6d0f5;
 }
 
 #backlight {
