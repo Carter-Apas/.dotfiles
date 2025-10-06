@@ -28,6 +28,8 @@ PACKAGES=(
     hyprpaper
     rofi
     waybar
+    hyprlock
+    hypridle
 
     # Coding stuff
     git
