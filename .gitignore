@@ -19,3 +19,15 @@
 .config/Slack/
 .config/pypoetry/
 .config/.mozilla/
+.config/Microsoft/
+.config/autostart/
+.config/bolt-launcher/
+.config/bruno/
+.config/configstore/
+.config/discord/
+.config/htop/
+.config/go/
+.config/mimeapps.list
+.config/op/
+.config/pgadmin4/
+.config/teams/
