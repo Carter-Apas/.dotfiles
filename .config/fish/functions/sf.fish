@@ -1,4 +1,3 @@
 function sf
-  cd $(find ~ -type d -maxdepth 4 \( -name node_modules -o -name Library -o -path ./.Trash \) -prune -o -print | fzf)
-
+  cd $(find ~ -maxdepth 4 -type d  \( -name node_modules -o -name Library -o -path ./.Trash \) -prune -o -print | fzf)
 end
