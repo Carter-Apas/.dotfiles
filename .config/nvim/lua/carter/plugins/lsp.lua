@@ -27,7 +27,6 @@ return {
         "json-lsp",
         "tailwindcss-language-server",
         "terraform-ls",
-        "terraform",
         "tflint",
         "ruff"
       }
