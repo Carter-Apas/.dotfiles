@@ -24,6 +24,11 @@ PACKAGES=(
     less
     keychain
 
+    # Dev
+    postgresql 
+    azure-cli
+    # openjdk-src #??
+
     # Shell
     fish
     uv
@@ -35,6 +40,7 @@ PACKAGES=(
     waybar
     hyprlock
     hypridle
+    xdg-desktop-portal # For screen sharing
     # Waybar dependencies
     nm-connection-manager
 
@@ -42,11 +48,29 @@ PACKAGES=(
     alsa-utils
     pipewire
     pipewire-alsa
+    pipewire-pulse
 
     # Applications
     vlc
     firefox
+    discord
 )
+
+AUR_PACKAGES=(
+    # Dev
+    bruno-bin
+    tfenv
+
+    # Games
+    bolt-launcher
+    
+    # Window Manager
+    hyprshot
+  )
+
+NPM_PACKGES=(
+    @google/gemini-cli
+  )
 
 # --- Installation Steps ---
 
@@ -58,6 +82,9 @@ sudo pacman -Sy
 # The '--needed' flag skips packages that are already installed.
 echo "Installing ${#PACKAGES[@]} packages..."
 sudo pacman -S --needed "${PACKAGES[@]}"
+
+echo "Installing Yay..."
+sudo pacman -S --needed git base-devel && cd ~ && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si # Care for the CD command here
 
 # --- Post-Installation Setup ---
 
@@ -93,5 +120,6 @@ echo "Installing Node 22"
 fnm install 22
 fnm use 22
 fnm default 22
+
 
 echo "Installation and setup complete! 🎉"
