@@ -60,6 +60,7 @@ AUR_PACKAGES=(
     # Dev
     bruno-bin
     tfenv
+    pokeget
 
     # Games
     bolt-launcher
