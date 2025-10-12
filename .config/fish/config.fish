@@ -9,5 +9,5 @@ if status is-interactive
 end
 
 if status --is-interactive
-    keychain --eval --quiet -Q github | source
+    keychain --eval --quiet -Q github github_mm | source
 end
