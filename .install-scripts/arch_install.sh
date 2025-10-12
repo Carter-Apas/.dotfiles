@@ -43,6 +43,7 @@ PACKAGES=(
     xdg-desktop-portal # For screen sharing
     # Waybar dependencies
     nm-connection-manager
+    dunst
 
     # Sound
     alsa-utils
