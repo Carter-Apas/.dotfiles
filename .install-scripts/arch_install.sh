@@ -27,6 +27,8 @@ PACKAGES=(
     # Dev
     postgresql 
     azure-cli
+    ffmpeg
+    docker
     # openjdk-src #??
 
     # Shell
