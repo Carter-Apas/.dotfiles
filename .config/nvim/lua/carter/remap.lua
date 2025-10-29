@@ -5,6 +5,7 @@ vim.keymap.set("n", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>p", "\"+p")
 vim.keymap.set("n", ">", "gv>")
 vim.keymap.set("n", "<", "gv<")
+vim.keymap.set("c", "<C-v>", "<C-r>+")
 
 -- Do not yank x
 vim.keymap.set("n", "x", "\"_x")
