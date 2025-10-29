@@ -39,7 +39,8 @@ return {
         sources = {
           { name = "nvim_lsp" },
           { name = "luasnip" },
-          { name = "copilot" }
+          { name = "copilot" },
+          { name = "lazydev", group_index = 0 }
         },
         mapping = cmp.mapping.preset.insert({
           -- Enter key confirms completion item
