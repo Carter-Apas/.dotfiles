@@ -4,11 +4,6 @@ return {
     tag = "0.1.4",
     dependencies = { "nvim-lua/plenary.nvim" }
   },
-  {
-    "nvim-tree/nvim-tree.lua",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    tag = "nightly"
-  },
   { "tpope/vim-fugitive" },
   { "tpope/vim-surround" },
   {
