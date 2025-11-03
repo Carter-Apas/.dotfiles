@@ -29,6 +29,7 @@ PACKAGES=(
     azure-cli
     ffmpeg
     docker
+    kubectl
     # openjdk-src #??
 
     # Shell
