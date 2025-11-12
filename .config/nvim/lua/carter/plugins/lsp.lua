@@ -28,7 +28,8 @@ return {
         "tailwindcss-language-server",
         "terraform-ls",
         "tflint",
-        "ruff"
+        "ruff",
+        "pyproject-fmt"
       }
 
       registry.refresh(function()
@@ -145,6 +146,7 @@ return {
         format_on_save = { timeout_ms = 500, lsp_format = "last" },
         formatters_by_ft = {
           python = { "ruff_format", "ruff_fix" },
+          toml = { "pyproject-fmt" },
           javascript = { "prettier" },
           typescript = { "prettier" },
           typescriptreact = { "prettier" },
