@@ -18,6 +18,7 @@ PACKAGES=(
     base-devel
     htop
     git
+    yazi
 
     # Auth
     openssh
