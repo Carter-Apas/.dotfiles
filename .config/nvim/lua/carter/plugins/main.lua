@@ -50,7 +50,10 @@ return {
       })
     end
   },
-  { "ggandor/leap.nvim" },
+  {
+    url = "https://codeberg.org/andyg/leap.nvim"
+    -- config...
+  },
   { "f-person/git-blame.nvim" },
   {
     "numToStr/Comment.nvim",
