@@ -31,3 +31,21 @@
 .config/op/
 .config/pgadmin4/
 .config/teams/
+.config/BambuStudio/
+.config/Code - OSS/
+.config/CurseForge/
+.config/QtProject.conf
+.config/RedisInsight/
+.config/beekeeper-studio/
+.config/fish/conf.d/fish_frozen_key_bindings.fish
+.config/fish/conf.d/fish_frozen_theme.fish
+.config/fish/functions/cleanUpCRDS.fish
+.config/grove/
+.config/flutter/
+.config/gh/
+.config/git/
+.config/helm/
+.config/k9s/
+.config/nextjs-nodejs/
+.config/ngrok/
+.config/ow-electron/
