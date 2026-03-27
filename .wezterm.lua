@@ -31,7 +31,13 @@ local function last_path_segment(path)
   return path:match('([^/\\]+)$')
 end
 
-local function padded_title(title) return string.format('  %s  ', title) end
+local function padded_title(title, max_width)
+  if max_width and max_width > 2 then
+    title = wezterm.truncate_right(title, max_width - 2)
+  end
+
+  return string.format(' %s ', title)
+end
 
 local function default_tab_title(tab)
   local cwd = cwd_uri_to_path(tab.active_pane.current_working_dir)
@@ -42,7 +48,7 @@ local function default_tab_title(tab)
   return tab.active_pane.title, cwd
 end
 
-wezterm.on('format-tab-title', function(tab)
+wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
   local title, cwd = default_tab_title(tab)
   local explicit_title = tab.tab_title
   local state = tab_title_state[tab.tab_id] or {}
@@ -58,14 +64,14 @@ wezterm.on('format-tab-title', function(tab)
     end
 
     if not cwd or cwd == state.explicit_title_cwd then
-      return padded_title(explicit_title)
+      return padded_title(explicit_title, max_width)
     end
   else
     state.last_explicit_title = nil
     state.explicit_title_cwd = nil
   end
 
-  return padded_title(title)
+  return padded_title(title, max_width)
 end)
 
 -- Tab title logic End --
@@ -77,6 +83,7 @@ config.color_scheme = "Ayu Light (Gogh)"
 -- config.color_scheme = "Catppuccin Latte"
 
 config.use_fancy_tab_bar = false
+config.tab_max_width = 32
 
 config.enable_wayland = false
 
