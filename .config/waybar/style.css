@@ -82,9 +82,8 @@
 }
 
 #custom-pomodoro {
-  background-color: #1a1b26;
+  background-color: #f8f9fa;
   padding: 0.3rem 0.7rem;
-  margin: 5px 0px;
   border-radius: 6px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   min-width: 0;
@@ -98,26 +97,30 @@
   font-weight: 600;
 }
 
-#custom-pomodoro {
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
 #custom-pomodoro:hover {
-  background-color: rgb(41, 42, 53);
+  background-color: #f8f9fa;
   outline: 1px solid rgba(255, 255, 255, 0.1);
   outline-offset: -1px;
 }
 
 #custom-pomodoro.work,
 #custom-pomodoro.break {
-  background-color: rgba(153, 209, 219, 0.1);
+  background-color: #008000;
+  color: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(153, 209, 219, 0.2);
+  outline: none;
+}
+
+#custom-pomodoro.pause {
+  background-color: #aa9208;
+  color: #ffffff;
   box-shadow: inset 0 0 0 1px rgba(153, 209, 219, 0.2);
   outline: none;
 }
 
 /* --- Right Modules (Individual, Fully Rounded Blocks - With Horizontal Spacing & Simple Hover) --- */
 #bluetooth,
+#custom-tailscale,
 #wireplumber,
 #backlight,
 #network,
@@ -135,6 +138,7 @@
 }
 
 #bluetooth:hover,
+#custom-tailscale:hover,
 #wireplumber:hover,
 #backlight:hover,
 #network:hover,
@@ -147,6 +151,24 @@
   margin-left: 0px;
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
+}
+
+#custom-tailscale {
+  min-width: 18px;
+  min-height: 18px;
+  padding: 0.3rem 0.7rem;
+  color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+
+#custom-tailscale.connected {
+  background-image: url("/home/carter/.dotfiles/.config/waybar/icons/tailscale-connected.svg");
+}
+
+#custom-tailscale.disconnected {
+  background-image: url("/home/carter/.dotfiles/.config/waybar/icons/tailscale-disconnected.svg");
 }
 
 #battery {

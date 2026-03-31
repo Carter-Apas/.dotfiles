@@ -31,6 +31,7 @@ PACKAGES=(
     ffmpeg
     docker
     kubectl
+    tailscale
     # openjdk-src #??
 
     # Shell
@@ -66,6 +67,7 @@ AUR_PACKAGES=(
     bruno-bin
     tfenv
     pokeget
+    trayscale
 
     # Games
     bolt-launcher
