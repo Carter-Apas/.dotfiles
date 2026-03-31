@@ -8,6 +8,10 @@ if status is-interactive
   export NVCC_PREPEND_FLAGS='-ccbin /opt/cuda/bin'
 end
 
+function fish_title
+    basename "$PWD"
+end
+
 if status --is-interactive
     keychain --eval --quiet -Q github github_mm | source
 end

@@ -36,6 +36,58 @@ def project_name(payload: dict) -> str:
     return name or DEFAULT_PROJECT
 
 
+def run_git(args: list[str], cwd: str) -> str:
+    if not cwd:
+        return ""
+
+    try:
+        result = subprocess.run(
+            ["git", *args],
+            check=False,
+            cwd=cwd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+            text=True,
+        )
+    except OSError:
+        return ""
+
+    if result.returncode != 0:
+        return ""
+
+    return result.stdout.strip()
+
+
+def repo_name_from_remote(remote_url: str) -> str:
+    remote_url = remote_url.strip()
+    if not remote_url:
+        return ""
+
+    name = remote_url.rsplit("/", 1)[-1]
+    name = name.rsplit(":", 1)[-1]
+    if name.endswith(".git"):
+        name = name[:-4]
+    return name.strip()
+
+
+def project_label(payload: dict) -> str:
+    cwd = str(payload.get("cwd") or "").strip()
+    fallback = project_name(payload)
+    if not cwd:
+        return fallback
+
+    repo = repo_name_from_remote(run_git(["remote", "get-url", "origin"], cwd))
+    branch = run_git(["rev-parse", "--abbrev-ref", "HEAD"], cwd)
+
+    if repo and branch:
+        return f"{repo}:{branch}"
+
+    if repo:
+        return repo
+
+    return fallback
+
+
 def set_tab_title(title: str) -> None:
     cmd = ["wezterm", "cli", "set-tab-title"]
     pane_id = os.environ.get("WEZTERM_PANE", "").strip()
@@ -70,7 +122,7 @@ def main() -> int:
     if not status:
         return 0
 
-    project = project_name(payload)
+    project = project_label(payload)
     state, marker = status
     title = f"{project}: {state}"
     if marker:
