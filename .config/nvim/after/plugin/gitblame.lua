@@ -1,2 +1,2 @@
-vim.keymap.set("n", "<leader>gb", ":GitBlameToggle<CR>")
-vim.cmd("GitBlameToggle")
+-- git-blame is wired through lazy.nvim in lua/carter/plugins/blame.lua so the
+-- command and keymap can lazy-load the plugin on demand.
