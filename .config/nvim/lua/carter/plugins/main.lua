@@ -56,13 +56,6 @@ return {
   },
   { "f-person/git-blame.nvim" },
   {
-    "numToStr/Comment.nvim",
-    opts = {
-      -- add any options here
-    },
-    lazy = false
-  },
-  {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     event = { "BufReadPost", "BufNewFile" },
