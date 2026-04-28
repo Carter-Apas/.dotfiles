@@ -97,7 +97,28 @@
   font-weight: 600;
 }
 
+#custom-todo {
+  background-color: #f8f9fa;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  min-width: 0;
+  border: none;
+  outline: none;
+  transition:
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out,
+    outline 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
+}
+
 #custom-pomodoro:hover {
+  background-color: #f8f9fa;
+  outline: 1px solid rgba(255, 255, 255, 0.1);
+  outline-offset: -1px;
+}
+
+#custom-todo:hover {
   background-color: #f8f9fa;
   outline: 1px solid rgba(255, 255, 255, 0.1);
   outline-offset: -1px;
