@@ -54,7 +54,7 @@ return {
     url = "https://codeberg.org/andyg/leap.nvim"
     -- config...
   },
-  { "f-person/git-blame.nvim" },
+  { name = "git-blame.nvim", url = "git@github.com:Carter-Apas/gitblame-nvim.git" },
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",

@@ -1,5 +1,6 @@
 return {
-  "f-person/git-blame.nvim",
+  name = "git-blame.nvim",
+  url = "git@github.com:Carter-Apas/gitblame-nvim.git",
   cmd = {
     "GitBlameToggle",
     "GitBlameEnable",
