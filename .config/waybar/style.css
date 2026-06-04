@@ -81,7 +81,8 @@
     color 0.2s ease-in-out;
 }
 
-#custom-pomodoro {
+#custom-pomodoro,
+#custom-recording {
   background-color: #f8f9fa;
   padding: 0.3rem 0.7rem;
   border-radius: 6px;
@@ -95,6 +96,12 @@
     outline 0.2s ease-in-out,
     box-shadow 0.2s ease-in-out;
   font-weight: 600;
+}
+
+#custom-recording {
+  color: #e65050;
+  font-size: 16px;
+  padding: 0.3rem 0.55rem;
 }
 
 #custom-todo {
@@ -112,7 +119,8 @@
     box-shadow 0.2s ease-in-out;
 }
 
-#custom-pomodoro:hover {
+#custom-pomodoro:hover,
+#custom-recording:hover {
   background-color: #f8f9fa;
   outline: 1px solid rgba(255, 255, 255, 0.1);
   outline-offset: -1px;

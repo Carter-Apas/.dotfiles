@@ -17,6 +17,7 @@
   "modules-center": ["clock"],
 
   "modules-right": [
+    "custom/recording",
     "custom/pomodoro",
     "custom/todo",
     "custom/tailscale",
@@ -145,11 +146,22 @@
   },
 
   "custom/pomodoro": {
-	"format": "{}",
-	"return-type": "json",
-	"exec": "waybar-module-pomodoro --no-work-icons",
-	"on-click": "waybar-module-pomodoro toggle",
-	"on-click-right": "waybar-module-pomodoro reset",
+		"format": "{}",
+		"return-type": "json",
+		"exec": "waybar-module-pomodoro --no-work-icons",
+		"on-click": "waybar-module-pomodoro toggle",
+		"on-click-right": "waybar-module-pomodoro reset",
+  },
+
+  "custom/recording": {
+		"format": "{}",
+		"return-type": "json",
+		"exec": "$HOME/.config/waybar/scripts/recording-status.sh",
+		"exec-if": "pgrep -x wf-recorder",
+		"interval": 1,
+		"signal": 8,
+		"tooltip": true,
+		"on-click": "$HOME/.config/hypr/recording-toggle.sh",
   },
 
   "custom/todo": {

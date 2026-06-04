@@ -45,6 +45,8 @@ PACKAGES=(
     waybar
     hyprlock
     hypridle
+    wf-recorder
+    libnotify
     xdg-desktop-portal # For screen sharing
     # Waybar dependencies
     nm-connection-manager
@@ -58,6 +60,7 @@ PACKAGES=(
 
     # Applications
     vlc
+    vlc-plugin-ffmpeg
     firefox
     discord
 )
