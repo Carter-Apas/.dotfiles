@@ -15,9 +15,10 @@ config.color_scheme = "Ayu Light (Gogh)"
 -- config.color_scheme = "Catppuccin Latte"
 
 config.use_fancy_tab_bar = false
-config.tab_max_width = 64
+config.tab_max_width = 80
 
 config.enable_wayland = false
+-- config.dpi = 192
 
 config.colors = {
   tab_bar = {
@@ -71,7 +72,7 @@ config.keys = {
 }, { key = 'y', mods = 'CTRL', action = wezterm.action.ActivateCopyMode }
 }
 
-config.window_background_opacity = .8
+config.window_background_opacity = 1
 
 -- and finally, return the configuration to wezterm
 return config
