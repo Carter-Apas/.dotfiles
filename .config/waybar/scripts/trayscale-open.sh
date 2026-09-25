@@ -3,7 +3,7 @@
 set -eu
 
 if hyprctl clients | rg -q '^\s*class: dev\.deedles\.Trayscale$'; then
-  hyprctl dispatch focuswindow 'class:^(dev\.deedles\.Trayscale)$' >/dev/null 2>&1
+  hyprctl dispatch 'hl.dsp.focus({ window = "class:^(dev\\.deedles\\.Trayscale)$" })' >/dev/null 2>&1
   exit 0
 fi
 
