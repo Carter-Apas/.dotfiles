@@ -1,0 +1,3 @@
+# Keep pyproject sub-tables as separate groups instead of collapsing them into
+# dotted keys under their parent table.
+table_format = "long"
