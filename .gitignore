@@ -50,3 +50,9 @@
 .config/ngrok/
 .config/ow-electron/
 .codex/skills/.system/
+.config/act/
+.config/aseprite/
+.config/astro/
+.config/gh-dash/
+.config/ghostty/
+.config/google-chrome-for-testing/
