@@ -56,3 +56,5 @@
 .config/gh-dash/
 .config/ghostty/
 .config/google-chrome-for-testing/
+.config/.wrangler/
+.config/Codex/
