@@ -42,7 +42,6 @@ PACKAGES=(
     hyprland
     hyprpaper
     rofi
-    waybar
     hyprlock
     hypridle
     wf-recorder
@@ -76,6 +75,7 @@ AUR_PACKAGES=(
     bolt-launcher
     
     # Window Manager
+    waybar-git # Lua dispatcher support for Hyprland
     hyprshot
   )
 
@@ -96,6 +96,9 @@ sudo pacman -S --needed "${PACKAGES[@]}"
 
 echo "Installing Yay..."
 sudo pacman -S --needed git base-devel && cd ~ && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si # Care for the CD command here
+
+echo "Installing ${#AUR_PACKAGES[@]} AUR packages..."
+yay -S --needed "${AUR_PACKAGES[@]}"
 
 # --- Post-Installation Setup ---
 
