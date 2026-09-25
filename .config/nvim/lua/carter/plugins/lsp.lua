@@ -160,6 +160,11 @@ return {
           yaml = { "yamlfmt --formatter retain_line_breaks=true" },
           terraform = { "terraform_fmt" },
           lua = { "lua-format" }
+        },
+        formatters = {
+          ["pyproject-fmt"] = {
+            prepend_args = { "--config", vim.fn.stdpath("config") .. "/pyproject-fmt.toml" }
+          }
         }
       })
     end
