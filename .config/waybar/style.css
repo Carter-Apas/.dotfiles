@@ -28,7 +28,9 @@
 #workspaces,
 #custom-uptime,
 #cpu,
-#memory {
+#memory,
+#disk,
+#custom-disk-io {
   background-color: #f8f9fa;
   padding: 0.3rem 0.7rem;
   border-radius: 6px;
@@ -43,6 +45,8 @@
 #custom-uptime:hover,
 #cpu:hover,
 #memory:hover,
+#disk:hover,
+#custom-disk-io:hover,
 #clock:hover {
   background-color: rgb(41, 42, 53);
 }
