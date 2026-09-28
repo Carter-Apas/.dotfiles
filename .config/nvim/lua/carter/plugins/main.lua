@@ -11,7 +11,7 @@ return {
     event = "InsertEnter",
     opts = {}     -- this is equalent to setup({}) function
   },
-  { "windwp/nvim-ts-autotag" },
+  { "windwp/nvim-ts-autotag", opts = {} },
   {
     "mrjones2014/smart-splits.nvim",
     event = "VeryLazy",
