@@ -36,7 +36,7 @@ local fileManager = "wezterm start -- yazi"
 local menu = 'rofi -show combi -combi-modes "drun,window" -modes combi -display-drun Run -display-window Window -show-icons'
 local lock = "hyprlock"
 local screenshot = "hyprshot -m region --clipboard-only"
-local screenshotDownloads = "hyprshot -m region"
+local screenshotSave = "hyprshot -m region -o ~/Screenshots"
 local recordingToggle = "~/.config/hypr/recording-toggle.sh"
 
 -------------------
@@ -194,7 +194,7 @@ hl.bind(mainMod .. " + X", hl.dsp.layout("togglesplit"))
 
 hl.bind("SUPER + L", hl.dsp.exec_cmd(lock))
 hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd(screenshot))
-hl.bind("SUPER + CTRL + SHIFT + S", hl.dsp.exec_cmd(screenshotDownloads))
+hl.bind("SUPER + CTRL + SHIFT + S", hl.dsp.exec_cmd(screenshotSave))
 hl.bind("SUPER + SHIFT + R", hl.dsp.exec_cmd(recordingToggle))
 
 -- Move focus.
