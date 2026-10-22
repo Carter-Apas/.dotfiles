@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+host_shell=${NVIM_DEVCONTAINER_HOST_SHELL:-/bin/sh}
+
+# Explicit commands (including :terminal <command>) keep their normal behavior.
+if (( $# > 0 )) || [[ ! -t 0 || ! -t 1 || -n ${NVIM_DEVCONTAINER_TERMINAL:-} ]]; then
+  exec "$host_shell" "$@"
+fi
+
+workspace=$PWD
+while [[ ! -f "$workspace/.devcontainer/devcontainer.json" && ! -f "$workspace/.devcontainer.json" ]]; do
+  if [[ $workspace == / ]]; then
+    exec "$host_shell"
+  fi
+  workspace=$(dirname "$workspace")
+done
+
+# Inspect Docker only; opening a terminal never starts a stopped container.
+if command -v devcontainer >/dev/null 2>&1 && command -v docker >/dev/null 2>&1; then
+  containers=$(docker ps --filter "label=devcontainer.local_folder=$workspace" --format '{{.ID}}' 2>/dev/null)
+  if [[ -n $containers ]]; then
+    printf 'Devcontainer is running for %s. Open a shell inside it? [y/N] ' "${workspace##*/}"
+    read -r answer
+    case "$answer" in
+      y|Y|yes|YES|Yes)
+        exec devcontainer exec --workspace-folder "$workspace" sh -c '
+          export NVIM_DEVCONTAINER_TERMINAL=1
+          if command -v bash >/dev/null 2>&1; then
+            exec bash -l
+          else
+            exec sh
+          fi
+        '
+        ;;
+    esac
+  fi
+fi
+
+exec "$host_shell"
