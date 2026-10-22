@@ -1,0 +1,3 @@
+# Merge these defaults into ~/.codex/config.toml if it already exists.
+[tui]
+alternate_screen = "never"
