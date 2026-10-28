@@ -1,34 +1,12 @@
 {
   "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 /home/carter/.codex/notify.py",
-            "timeout": 5
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 /home/carter/.codex/notify.py",
-            "timeout": 5
-          }
-        ]
-      }
-    ],
     "Stop": [
       {
         "hooks": [
           {
-            "type": "command",
             "command": "python3 /home/carter/.codex/notify.py",
-            "timeout": 5
+            "timeout": 5,
+            "type": "command"
           }
         ]
       }
