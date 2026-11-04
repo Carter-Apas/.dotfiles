@@ -1,0 +1,24 @@
+/* Loaded on top of the regular Rofi theme. */
+window {
+    width: 440px;
+    border: 2px;
+    border-color: @active-foreground;
+    border-radius: 18px;
+    padding: 24px;
+}
+mainbox { spacing: 18px; }
+inputbar { children: [ prompt ]; padding: 0px; }
+prompt { font: "sans bold 16"; }
+message { border: 0px; padding: 0px; }
+textbox { font: "sans 11"; }
+listview {
+    lines: 2;
+    columns: 1;
+    fixed-height: true;
+    scrollbar: false;
+    border: 0px;
+    padding: 0px;
+    spacing: 10px;
+}
+element { padding: 18px; border-radius: 10px; }
+element-text { font: "sans 13"; }

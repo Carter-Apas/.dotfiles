@@ -1,6 +1,8 @@
+@import "../desktop-theme/current/waybar.css";
+
 /* --- Global Styles --- */
-/* background: #f8f9fa */
-/* accent: #f2ae49 */
+/* background: @theme_bg */
+/* accent: @theme_accent */
 /* text: #5C6166 */
 
 /* colors.bg */
@@ -16,7 +18,7 @@
 
 #waybar {
   background: transparent;
-  color: #5c6166;
+  color: @theme_fg;
   font-weight: 500;
 }
 
@@ -31,7 +33,7 @@
 #memory,
 #disk,
 #custom-disk-io {
-  background-color: #f8f9fa;
+  background-color: @theme_bg;
   padding: 0.3rem 0.7rem;
   border-radius: 6px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -48,32 +50,33 @@
 #disk:hover,
 #custom-disk-io:hover,
 #clock:hover {
-  background-color: rgb(41, 42, 53);
+  background-color: @theme_hover;
 }
 
 #workspaces button {
   border-radius: 5px;
   padding: 0.3rem 0.7rem;
   background: transparent;
+  color: @theme_fg;
   transition: all 0.2s ease-in-out;
   border: none;
   outline: none;
 }
 
 #workspaces button.active {
-  color: #f2ae49;
-  background-color: rgba(153, 209, 219, 0.1);
+  color: @theme_accent;
+  background-color: @theme_selection;
   box-shadow: inset 0 0 0 1px rgba(153, 209, 219, 0.2);
 }
 
 #workspaces button:hover {
-  background: rgb(41, 42, 53);
+  background: @theme_hover;
   /* Reference bright hover color */
 }
 
 /* --- Center Module (Individual, Fully Rounded Block - With Simple Hover) --- */
 #clock {
-  background-color: #f8f9fa;
+  background-color: @theme_bg;
   padding: 0.3rem 0.7rem;
   border-radius: 6px;
   /* This module is always rounded */
@@ -87,7 +90,7 @@
 
 #custom-pomodoro,
 #custom-recording {
-  background-color: #f8f9fa;
+  background-color: @theme_bg;
   padding: 0.3rem 0.7rem;
   border-radius: 6px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -103,13 +106,13 @@
 }
 
 #custom-recording {
-  color: #e65050;
+  color: @theme_red;
   font-size: 16px;
   padding: 0.3rem 0.55rem;
 }
 
 #custom-todo {
-  background-color: #f8f9fa;
+  background-color: @theme_bg;
   padding: 0.3rem 0.7rem;
   border-radius: 6px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -125,28 +128,28 @@
 
 #custom-pomodoro:hover,
 #custom-recording:hover {
-  background-color: #f8f9fa;
+  background-color: @theme_bg;
   outline: 1px solid rgba(255, 255, 255, 0.1);
   outline-offset: -1px;
 }
 
 #custom-todo:hover {
-  background-color: #f8f9fa;
+  background-color: @theme_bg;
   outline: 1px solid rgba(255, 255, 255, 0.1);
   outline-offset: -1px;
 }
 
 #custom-pomodoro.work,
 #custom-pomodoro.break {
-  background-color: #008000;
-  color: #ffffff;
+  background-color: @theme_green;
+  color: @theme_on_accent;
   box-shadow: inset 0 0 0 1px rgba(153, 209, 219, 0.2);
   outline: none;
 }
 
 #custom-pomodoro.pause {
-  background-color: #aa9208;
-  color: #ffffff;
+  background-color: @theme_yellow;
+  color: @theme_on_accent;
   box-shadow: inset 0 0 0 1px rgba(153, 209, 219, 0.2);
   outline: none;
 }
@@ -159,7 +162,7 @@
 #network,
 #custom-lock,
 #battery {
-  background-color: #f8f9fa;
+  background-color: @theme_bg;
   padding: 0.3rem 1rem;
   border-radius: 6px;
   box-shadow: none;
@@ -177,7 +180,7 @@
 #network:hover,
 #custom-lock:hover,
 #battery:hover {
-  background-color: rgb(41, 42, 53);
+  background-color: @theme_hover;
 }
 
 #bluetooth {
@@ -211,45 +214,45 @@
 }
 
 #backlight {
-  color: #c6d0f5;
+  color: @theme_backlight;
 }
 
 #network.disconnected {
-  color: #e65050;
+  color: @theme_red;
 }
 
 #custom-lock {
-  color: #babbf1;
+  color: @theme_purple;
 }
 
 #bluetooth {
-  color: #888888;
+  color: @theme_muted;
   font-size: 16px;
 }
 
 #bluetooth.on {
-  color: #2196f3;
+  color: @theme_blue;
 }
 
 #bluetooth.connected {
-  color: #99d1db;
+  color: @theme_aqua;
 }
 
 #battery {
-  color: #99d1db;
+  color: @theme_aqua;
 }
 
 #battery.charging {
-  color: #a6d189;
+  color: @theme_charging;
 }
 
 #battery.warning:not(.charging) {
-  color: #e78284;
+  color: @theme_warning;
 }
 
 /* --- Tooltip Styles --- */
 tooltip {
-  background-color: #f8f9fa;
+  background-color: @theme_bg;
   padding: 5px 12px;
   margin: 5px 0px;
   border-radius: 6px;
@@ -263,5 +266,14 @@ tooltip label {
     "SF Pro Text", "Inter", "Segoe UI, NotoSans Nerd Font", sans-serif;
   font-size: 13px;
   padding: 5px 12px;
-  color: #5c6166;
+  color: @theme_fg;
 }
+
+#custom-theme {
+  background-color: @theme_bg;
+  color: @theme_fg;
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  font-size: 16px;
+}
+#custom-theme:hover { background-color: @theme_hover; }

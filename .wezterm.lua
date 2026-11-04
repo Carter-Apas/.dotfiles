@@ -8,54 +8,30 @@ local config = {}
 -- help provide clearer error messages
 if wezterm.config_builder then config = wezterm.config_builder() end
 
--- This is where you actually apply your config choices
-
--- For example, changing the color scheme:
-config.color_scheme = "Ayu Light (Gogh)"
--- config.color_scheme = "Catppuccin Latte"
-
+-- Follow the system appearance; the GUI API is unavailable in the mux server.
+local appearance = wezterm.gui and wezterm.gui.get_appearance() or 'Light'
+local dark = appearance:find('Dark') ~= nil
+config.color_scheme = dark and 'Ayu Mirage' or 'Ayu Light (Gogh)'
 config.use_fancy_tab_bar = false
 config.tab_max_width = 80
-
 config.enable_wayland = false
--- config.dpi = 192
 
+local bg = dark and '#1f2430' or '#F8F9FA'
+local fg = dark and '#cccac2' or '#5c6166'
+local muted = dark and '#707a8c' or '#808080'
 config.colors = {
   tab_bar = {
+    background = bg,
     active_tab = {
-      -- The color of the background area for the tab
-      bg_color = '#F8F9FA',
-      -- The color of the text for the tab
-      fg_color = 'black',
-
-      -- Specify whether you want "Half", "Normal" or "Bold" intensity for the
-      -- label shown for this tab.
-      -- The default is "Normal"
+      bg_color = dark and '#274364' or bg,
+      fg_color = fg,
       intensity = 'Bold',
-
-      -- Specify whether you want "None", "Single" or "Double" underline for
-      -- label shown for this tab.
-      -- The default is "None"
-      underline = 'None',
-
-      -- Specify whether you want the text to be italic (true) or not (false)
-      -- for this tab.  The default is false.
-      italic = false,
-
-      -- Specify whether you want the text to be rendered with strikethrough (true)
-      -- or not for this tab.  The default is false.
-      strikethrough = false
     },
-    inactive_tab = {
-      bg_color = '#F8F9FA',
-      fg_color = '#c0c0c0'
-
-      -- The same options that were listed under the `active_tab` section above
-      -- can also be used for `inactive_tab`.
-    },
-    background = '#F8F9FA',
-    new_tab = { bg_color = '#F8F9FA', fg_color = '#808080' }
-  }
+    inactive_tab = { bg_color = bg, fg_color = muted },
+    inactive_tab_hover = { bg_color = dark and '#232a34' or '#e7eaed', fg_color = fg },
+    new_tab = { bg_color = bg, fg_color = muted },
+    new_tab_hover = { bg_color = dark and '#232a34' or '#e7eaed', fg_color = fg },
+  },
 }
 
 config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }

@@ -58,3 +58,12 @@
 .config/google-chrome-for-testing/
 .config/.wrangler/
 .config/Codex/
+.codex/__pycache__/
+.config/OpenBot/
+.config/blender-mcp/
+.config/blender/
+.config/fish/conf.d/grove.fish
+.config/fish/functions/ghe.fish
+.config/remmina/
+.config/sunshine/
+.config/desktop-theme/current/

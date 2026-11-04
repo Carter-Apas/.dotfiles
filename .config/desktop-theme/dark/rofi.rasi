@@ -1,0 +1,8 @@
+* {
+    foreground: #cccac2;
+    background: #1f2430;
+    selected-normal-background: #274364;
+    active-foreground: #ffcc66;
+    urgent-foreground: #ff6666;
+    separatorcolor: #323843;
+}

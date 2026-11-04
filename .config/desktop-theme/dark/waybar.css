@@ -1,0 +1,16 @@
+@define-color theme_bg #1f2430;
+@define-color theme_fg #cccac2;
+@define-color theme_accent #ffcc66;
+@define-color theme_hover #232a34;
+@define-color theme_selection #274364;
+@define-color theme_red #ff6666;
+@define-color theme_green #d5ff80;
+@define-color theme_yellow #ffcc66;
+@define-color theme_backlight #73d0ff;
+@define-color theme_purple #dfbfff;
+@define-color theme_muted #707a8c;
+@define-color theme_blue #73d0ff;
+@define-color theme_aqua #95e6cb;
+@define-color theme_charging #87d96c;
+@define-color theme_warning #ffa759;
+@define-color theme_on_accent #1f2430;

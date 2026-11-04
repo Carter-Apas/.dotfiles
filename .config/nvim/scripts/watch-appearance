@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Print an event when the OS appearance changes. No polling or saved theme state.
+set -euo pipefail
+
+case "$(uname -s)" in
+    Darwin)
+        script_dir=$(cd "$(dirname "$0")" && pwd)
+        source_file="$script_dir/watch-appearance-macos.c"
+        binary="${XDG_CACHE_HOME:-$HOME/.cache}/nvim/watch-appearance"
+        if [[ ! -x "$binary" || "$source_file" -nt "$binary" ]]; then
+            if ! xcode-select -p >/dev/null 2>&1; then
+                echo 'macOS appearance monitoring needs Xcode Command Line Tools (xcode-select --install).' >&2
+                exit 1
+            fi
+            mkdir -p "$(dirname "$binary")"
+            cc -O2 -framework CoreFoundation "$source_file" -o "$binary.$$"
+            mv -f "$binary.$$" "$binary"
+        fi
+        exec "$binary"
+        ;;
+    Linux)
+        exec gsettings monitor org.gnome.desktop.interface color-scheme
+        ;;
+    *) echo 'Appearance monitoring supports Linux and macOS.' >&2; exit 1 ;;
+esac

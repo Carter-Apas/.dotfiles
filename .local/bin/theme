@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+# Shared desktop theme for Linux and macOS. Requires Bash 3.2 or newer.
+set -euo pipefail
+
+theme_dir="${XDG_CONFIG_HOME:-$HOME/.config}/desktop-theme"
+current="$theme_dir/current"
+
+usage() {
+    echo 'Usage: theme {dark|light|toggle|menu|status|apply}'
+    echo '  dark/light  Set the system appearance and apply the matching palette'
+    echo '  toggle      Switch between light and Ayu Mirage'
+    echo '  menu        Open the Rofi switcher on Linux'
+    echo '  status      Print the system appearance'
+    echo '  apply       Apply palettes for the system appearance (also used at login)'
+}
+
+[[ $# -le 1 ]] || { usage >&2; exit 2; }
+case "${1:-status}" in
+    -h|--help|help) usage; exit 0 ;;
+    status|dark|light|toggle|apply|menu) ;;
+    *) usage >&2; exit 2 ;;
+esac
+
+platform=$(uname -s)
+if [[ "$platform" == Darwin ]]; then
+    appearance=$(osascript -e 'tell application "System Events" to tell appearance preferences to get dark mode')
+    mode=light
+    [[ "$appearance" != true ]] || mode=dark
+else
+    appearance=$(gsettings get org.gnome.desktop.interface color-scheme)
+    mode=light
+    [[ "$appearance" != "'prefer-dark'" ]] || mode=dark
+fi
+
+set_appearance=false
+case "${1:-status}" in
+    status) echo "$mode"; exit 0 ;;
+    dark|light) mode="$1"; set_appearance=true ;;
+    toggle)
+        if [[ "$mode" == dark ]]; then mode=light; else mode=dark; fi
+        set_appearance=true
+        ;;
+    apply) ;;
+    menu)
+        command -v rofi >/dev/null || { echo 'theme: install rofi to use the popup' >&2; exit 1; }
+        # Initialize generated imports before Rofi reads its configuration.
+        if [[ ! -f "$current/rofi.rasi" ]]; then "$0" apply >/dev/null; fi
+        selected=0
+        [[ "$mode" == dark ]] && selected=1
+        if ! choice=$(printf '☀   Light · Ayu\n☾   Dark · Ayu Mirage\n' | rofi \
+            -dmenu -no-custom -format i -selected-row "$selected" \
+            -me-select-entry '' -me-accept-entry MousePrimary \
+            -p 'Appearance' -mesg "Current: $mode  •  Enter to apply  •  Esc to close" \
+            -theme-str "@import \"$theme_dir/switcher.rasi\""); then
+            exit 0
+        fi
+        case "$choice" in
+            0) mode=light ;;
+            1) mode=dark ;;
+            *) exit 0 ;;
+        esac
+        set_appearance=true
+        ;;
+esac
+
+if [[ "$set_appearance" == true ]]; then
+    if [[ "$platform" == Darwin ]]; then
+        dark=false
+        [[ "$mode" != dark ]] || dark=true
+        osascript -e "tell application \"System Events\" to tell appearance preferences to set dark mode to $dark" >/dev/null
+    else
+        gsettings set org.gnome.desktop.interface color-scheme "prefer-$mode"
+    fi
+fi
+
+mkdir -p "$current"
+# Keep runtime output out of Git and leave the application's layout untouched.
+for component in waybar.css rofi.rasi; do
+    cp "$theme_dir/$mode/$component" "$current/$component"
+done
+
+# WezTerm normally reloads its own config when it changes.
+if [[ -f "$HOME/.wezterm.lua" ]]; then
+    touch "$HOME/.wezterm.lua"
+fi
+
+warn() { echo "theme: $*" >&2; }
+if [[ "$platform" != Darwin ]]; then
+    if [[ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]] && command -v hyprctl >/dev/null; then
+        hyprctl reload >/dev/null || warn 'could not reload Hyprland'
+    fi
+    # SIGUSR2 reloads the configuration and stylesheet without toggling the bar.
+    if command -v pkill >/dev/null; then
+        pkill -USR2 -u "$(id -u)" -x waybar || true
+    fi
+fi
+echo "$mode"

@@ -45,7 +45,7 @@ local recordingToggle = "~/.config/hypr/recording-toggle.sh"
 
 hl.on("hyprland.start", function()
     hl.exec_cmd("hyprpaper")
-    hl.exec_cmd("waybar")
+    hl.exec_cmd("~/.local/bin/theme apply; waybar")
     hl.exec_cmd("hypridle")
     hl.exec_cmd("~/.config/sunshine/hypr-headless-output.sh ensure")
 end)
@@ -62,6 +62,14 @@ hl.env("QT_QPA_PLATFORM", "wayland")
 ---- LOOK AND FEEL ----
 -----------------------
 
+local appearance = io.popen("gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null")
+local darkMode = false
+if appearance then
+    darkMode = appearance:read("*l") == "'prefer-dark'"
+    appearance:close()
+end
+local activeBorder = darkMode and "rgba(ffcc66ee)" or "rgba(f2ae49ee)"
+
 hl.config({
     xwayland = {
         force_zero_scaling = true,
@@ -73,10 +81,10 @@ hl.config({
         border_size = 2,
         col = {
             active_border = {
-                colors = { "rgba(f2ae49ee)", "rgba(f2ae49ee)" },
+                colors = { activeBorder, activeBorder },
                 angle = 45,
             },
-            inactive_border = "rgba(595959aa)",
+            inactive_border = darkMode and "rgba(323843aa)" or "rgba(595959aa)",
         },
         resize_on_border = false,
         allow_tearing = false,
@@ -183,6 +191,8 @@ hl.gesture({
 ---------------------
 
 local mainMod = "ALT + SHIFT"
+
+hl.bind("SUPER + SHIFT + T", hl.dsp.exec_cmd("~/.local/bin/theme menu"))
 
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + C", hl.dsp.window.close())

@@ -19,6 +19,7 @@
   "modules-center": ["clock"],
 
   "modules-right": [
+    "custom/theme",
     "custom/recording",
     "custom/pomodoro",
     "custom/todo",
@@ -29,6 +30,13 @@
     "backlight",
     "battery",
   ],
+
+  "custom/theme": {
+    "format": "◐",
+    "tooltip-format": "Appearance · Light / Ayu Mirage",
+    "on-click": "$HOME/.local/bin/theme menu",
+    "on-click-right": "$HOME/.local/bin/theme toggle"
+  },
 
   "hyprland/workspaces": {
     "format": "{name}: {icon}",

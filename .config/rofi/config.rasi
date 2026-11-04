@@ -155,3 +155,5 @@ textbox-prompt-colon {
     margin:       0px 0.3em 0em 0em ;
     text-color: @normal-foreground;
 }
+
+@import "../desktop-theme/current/rofi.rasi"
