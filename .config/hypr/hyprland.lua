@@ -62,13 +62,17 @@ hl.env("QT_QPA_PLATFORM", "wayland")
 ---- LOOK AND FEEL ----
 -----------------------
 
-local appearance = io.popen("gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null")
-local darkMode = false
-if appearance then
-    darkMode = appearance:read("*l") == "'prefer-dark'"
-    appearance:close()
+local configDir = os.getenv("XDG_CONFIG_HOME")
+if not configDir or configDir == "" then configDir = os.getenv("HOME") .. "/.config" end
+local palettePath = configDir .. "/desktop-theme/current/hyprland.lua"
+local paletteFile = io.open(palettePath, "r")
+if paletteFile then
+    paletteFile:close()
+else
+    -- Generate imports on the first launch after stowing, without reloading apps.
+    os.execute('"' .. os.getenv("HOME") .. '/.local/bin/theme" render')
 end
-local activeBorder = darkMode and "rgba(ffcc66ee)" or "rgba(f2ae49ee)"
+local palette = dofile(palettePath)
 
 hl.config({
     xwayland = {
@@ -81,10 +85,10 @@ hl.config({
         border_size = 2,
         col = {
             active_border = {
-                colors = { activeBorder, activeBorder },
+                colors = { palette.active_border, palette.active_border },
                 angle = 45,
             },
-            inactive_border = darkMode and "rgba(323843aa)" or "rgba(595959aa)",
+            inactive_border = palette.inactive_border,
         },
         resize_on_border = false,
         allow_tearing = false,
@@ -100,7 +104,7 @@ hl.config({
             enabled = true,
             range = 4,
             render_power = 3,
-            color = "rgba(1a1a1aee)",
+            color = palette.shadow,
         },
         blur = {
             enabled = true,

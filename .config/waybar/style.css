@@ -3,7 +3,7 @@
 /* --- Global Styles --- */
 /* background: @theme_bg */
 /* accent: @theme_accent */
-/* text: #5C6166 */
+/* text: @theme_fg */
 
 /* colors.bg */
 * {
@@ -36,7 +36,7 @@
   background-color: @theme_bg;
   padding: 0.3rem 0.7rem;
   border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px @theme_shadow;
   min-width: 0;
   border: none;
   transition:
@@ -66,7 +66,7 @@
 #workspaces button.active {
   color: @theme_accent;
   background-color: @theme_selection;
-  box-shadow: inset 0 0 0 1px rgba(153, 209, 219, 0.2);
+  box-shadow: inset 0 0 0 1px @theme_highlight_shadow;
 }
 
 #workspaces button:hover {
@@ -80,7 +80,7 @@
   padding: 0.3rem 0.7rem;
   border-radius: 6px;
   /* This module is always rounded */
-  box-shadow: 0 1px 3px rgba(153, 209, 219, 0.2);
+  box-shadow: 0 1px 3px @theme_highlight_shadow;
   min-width: 0;
   border: none;
   transition:
@@ -93,7 +93,7 @@
   background-color: @theme_bg;
   padding: 0.3rem 0.7rem;
   border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px @theme_shadow;
   min-width: 0;
   border: none;
   outline: none;
@@ -115,7 +115,7 @@
   background-color: @theme_bg;
   padding: 0.3rem 0.7rem;
   border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px @theme_shadow;
   min-width: 0;
   border: none;
   outline: none;
@@ -129,13 +129,13 @@
 #custom-pomodoro:hover,
 #custom-recording:hover {
   background-color: @theme_bg;
-  outline: 1px solid rgba(255, 255, 255, 0.1);
+  outline: 1px solid @theme_outline;
   outline-offset: -1px;
 }
 
 #custom-todo:hover {
   background-color: @theme_bg;
-  outline: 1px solid rgba(255, 255, 255, 0.1);
+  outline: 1px solid @theme_outline;
   outline-offset: -1px;
 }
 
@@ -143,14 +143,14 @@
 #custom-pomodoro.break {
   background-color: @theme_green;
   color: @theme_on_accent;
-  box-shadow: inset 0 0 0 1px rgba(153, 209, 219, 0.2);
+  box-shadow: inset 0 0 0 1px @theme_highlight_shadow;
   outline: none;
 }
 
 #custom-pomodoro.pause {
   background-color: @theme_yellow;
   color: @theme_on_accent;
-  box-shadow: inset 0 0 0 1px rgba(153, 209, 219, 0.2);
+  box-shadow: inset 0 0 0 1px @theme_highlight_shadow;
   outline: none;
 }
 
@@ -256,8 +256,8 @@ tooltip {
   padding: 5px 12px;
   margin: 5px 0px;
   border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid @theme_outline;
+  box-shadow: 0 4px 12px @theme_tooltip_shadow;
   font-size: 12px;
 }
 

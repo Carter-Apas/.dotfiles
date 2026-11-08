@@ -2,22 +2,54 @@
 # Shared desktop theme for Linux and macOS. Requires Bash 3.2 or newer.
 set -euo pipefail
 
-theme_dir="${XDG_CONFIG_HOME:-$HOME/.config}/desktop-theme"
+config_dir="${XDG_CONFIG_HOME:-$HOME/.config}"
+theme_dir="$config_dir/desktop-theme"
 current="$theme_dir/current"
 
+# Palette files are trusted dotfiles. Run in a subshell to keep their variables
+# separate from the switcher, and stage every template before replacing output.
+render_palette() (
+    source "$theme_dir/palettes/common.sh"
+    source "$theme_dir/palettes/$mode.sh"
+    accent_hex=${accent#\#}
+    inactive_border_hex=${inactive_border#\#}
+    window_shadow_hex=${window_shadow#\#}
+    mkdir -p "$current"
+    staging=$(mktemp -d "$current/.render.XXXXXX")
+    trap 'rm -rf "$staging"' EXIT
+    placeholder='\{\{([a-z_]+)\}\}'
+    for template in "$theme_dir"/templates/*; do
+        content=$(cat "$template")
+        while [[ "$content" =~ $placeholder ]]; do
+            key=${BASH_REMATCH[1]}
+            value=${!key}
+            content=${content//"{{$key}}"/"$value"}
+        done
+        if [[ "$content" == *'{{'* ]]; then
+            echo "theme: invalid placeholder in $template" >&2
+            exit 1
+        fi
+        printf '%s\n' "$content" > "$staging/${template##*/}"
+    done
+    for output in "$staging"/*; do
+        mv "$output" "$current/${output##*/}"
+    done
+)
+
 usage() {
-    echo 'Usage: theme {dark|light|toggle|menu|status|apply}'
+    echo 'Usage: theme {dark|light|toggle|menu|status|apply|render}'
     echo '  dark/light  Set the system appearance and apply the matching palette'
     echo '  toggle      Switch between light and Ayu Mirage'
     echo '  menu        Open the Rofi switcher on Linux'
     echo '  status      Print the system appearance'
     echo '  apply       Apply palettes for the system appearance (also used at login)'
+    echo '  render      Generate palettes without reloading apps (used at bootstrap)'
 }
 
 [[ $# -le 1 ]] || { usage >&2; exit 2; }
 case "${1:-status}" in
     -h|--help|help) usage; exit 0 ;;
-    status|dark|light|toggle|apply|menu) ;;
+    status|dark|light|toggle|apply|render|menu) ;;
     *) usage >&2; exit 2 ;;
 esac
 
@@ -40,7 +72,7 @@ case "${1:-status}" in
         if [[ "$mode" == dark ]]; then mode=light; else mode=dark; fi
         set_appearance=true
         ;;
-    apply) ;;
+    apply|render) ;;
     menu)
         command -v rofi >/dev/null || { echo 'theme: install rofi to use the popup' >&2; exit 1; }
         # Initialize generated imports before Rofi reads its configuration.
@@ -63,6 +95,9 @@ case "${1:-status}" in
         ;;
 esac
 
+render_palette
+if [[ "${1:-status}" == render ]]; then exit 0; fi
+
 if [[ "$set_appearance" == true ]]; then
     if [[ "$platform" == Darwin ]]; then
         dark=false
@@ -73,12 +108,6 @@ if [[ "$set_appearance" == true ]]; then
     fi
 fi
 
-mkdir -p "$current"
-# Keep runtime output out of Git and leave the application's layout untouched.
-for component in waybar.css rofi.rasi; do
-    cp "$theme_dir/$mode/$component" "$current/$component"
-done
-
 # WezTerm normally reloads its own config when it changes.
 if [[ -f "$HOME/.wezterm.lua" ]]; then
     touch "$HOME/.wezterm.lua"
@@ -86,6 +115,13 @@ fi
 
 warn() { echo "theme: $*" >&2; }
 if [[ "$platform" != Darwin ]]; then
+    # Reload only an existing daemon; notifications can still start it via D-Bus.
+    if command -v dunstctl >/dev/null && command -v pgrep >/dev/null \
+        && pgrep -u "$(id -u)" -x dunst >/dev/null; then
+        # Explicit paths also pick up new drop-ins in an already running session.
+        dunstctl reload "$config_dir/dunst/dunstrc" "$config_dir"/dunst/dunstrc.d/*.conf \
+            || warn 'could not reload Dunst'
+    fi
     if [[ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]] && command -v hyprctl >/dev/null; then
         hyprctl reload >/dev/null || warn 'could not reload Hyprland'
     fi

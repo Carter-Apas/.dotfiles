@@ -1,0 +1,21 @@
+# Ayu Mirage. Aliases keep colours shared across roles in sync.
+bg='#1f2430'
+fg='#cccac2'
+accent='#ffcc66'
+border='#323843'
+muted='#707a8c'
+hover='#232a34'
+selection='#274364'
+red='#ff6666'
+green='#d5ff80'
+yellow="$accent"
+blue='#73d0ff'
+backlight="$blue"
+purple='#dfbfff'
+aqua='#95e6cb'
+charging='#87d96c'
+warning='#ffa759'
+on_accent="$bg"
+launcher_selection="$selection"
+launcher_accent="$accent"
+inactive_border="$border"
