@@ -1,15 +1,3 @@
 {
-  "hooks": {
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "command": "python3 /home/carter/.codex/notify.py",
-            "timeout": 5,
-            "type": "command"
-          }
-        ]
-      }
-    ]
-  }
+  "hooks": {}
 }
