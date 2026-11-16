@@ -22,6 +22,7 @@ return {
         "dockerfile-language-server",
         "lua-language-server",
         "luaformatter",
+        "marksman",
         "yaml-language-server",
         "helm-ls",
         "json-lsp",
